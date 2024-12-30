@@ -1,19 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
-import { BrowserRouter, Route, Routes } from 'react-router'
-import Home from './pages/Home'
-import Profile from './pages/Profile'
+import { useNavigate } from 'react-router';
+import AppRoutes from './AppRoutes';
 
 export default function App() {
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, getAccessTokenSilently } = useAuth0();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const checkUserRole = async () => {
+      if (user?.['https://tpw.cam/role'] === 'new_user') {
+        navigate('/account-type-selection');
+      } else if (isAuthenticated) {
+        try {
+          await getAccessTokenSilently();
+          console.log('fetched access token')
+        } catch (error) {
+          console.log(error)
+        }
+      }
+    };
+    
+    checkUserRole();
+  }, [user, isAuthenticated, getAccessTokenSilently]);
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />}></Route>
-        <Route path="/profile" element={isAuthenticated ? <Profile /> : <Home />}></Route>
-      </Routes>
-    </BrowserRouter>
-)
+      <AppRoutes isAuthenticated={isAuthenticated} accountType={user?.['https://tpw.cam/role']}/>
+  );
 }
-
