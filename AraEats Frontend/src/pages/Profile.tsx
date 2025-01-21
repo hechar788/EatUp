@@ -1,8 +1,11 @@
-import React from 'react'
-import Nav from '../components/Nav'
+import Nav from '../components/BottomNav'
 import ProfileContent from '../components/Oauth0/ProfileContent'
 
-export default function Profile({ accountType }) {
+type PropsTypes = {
+    accountType: 'new_user' | 'merchant' | 'customer'
+}
+
+export default function Profile({ accountType }: PropsTypes) {
     return (
     <>
         <Nav />

@@ -1,10 +1,39 @@
-import React from 'react'
-import Nav from '../components/Nav'
+import BottomNav from '../components/BottomNav'
+import HomeHeader from '../components/home/HomeHeader'
+import '../styles/home.css'
 
 export default function Home(){
     return (
         <>
-        <Nav />
+        <HomeHeader />
+        <div className="home-list-main">
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+            <div>Merchant Template</div>
+        </div>
+        <BottomNav />
         </>
     )
 }

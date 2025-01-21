@@ -1,10 +1,14 @@
-import React from "react";
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import AccountTypeSelection from './pages/AccountTypeSelection';
 import { Navigate, Routes, Route } from "react-router";
 
-export default function AppRoutes({isAuthenticated, accountType}) {
+type PropsTypes = {
+  isAuthenticated: boolean;
+  accountType: 'new_user' | 'merchant' | 'customer';
+};
+
+export default function AppRoutes({isAuthenticated, accountType}: PropsTypes) {
     return (
       <Routes>
         <Route path="/" element={<Home />} />
