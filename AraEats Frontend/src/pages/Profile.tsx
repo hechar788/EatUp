@@ -1,3 +1,4 @@
+import React from 'react';
 import Nav from '../components/BottomNav'
 import ProfileContent from '../components/Oauth0/ProfileContent'
 
