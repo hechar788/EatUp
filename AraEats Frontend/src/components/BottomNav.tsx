@@ -1,6 +1,9 @@
+import React from 'react';
+
 // import { NavLink } from "react-router";
 // import { LoginButton, LogoutButton } from './Oauth0/LoginLogout'
 // import { useAuth0 } from '@auth0/auth0-react';
+
 import ProfileSVG from "../assets/svg/profile-svg";
 import ExploreSVG from "../assets/svg/magnifying-glass-svg";
 import HomeSVG from "../assets/svg/home-svg";

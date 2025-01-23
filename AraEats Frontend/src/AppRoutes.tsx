@@ -1,3 +1,4 @@
+import React from 'react';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import AccountTypeSelection from './pages/AccountTypeSelection';

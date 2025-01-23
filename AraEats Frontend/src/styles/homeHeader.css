@@ -1,11 +1,52 @@
 .home-header-container form input[type=text] {
-    margin-top: 1.5vh;
     width: 35vw;
+    height: 2vh;
+}
+
+span {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    position: absolute;
+    left: 10%;
+}
+
+span p {
+    margin: 0 .55vw 0 .45vw;
+}
+
+span svg {
+    width: 1.5em;
 }
 
 .home-header-container {
+    width: 100%;
     display: flex;
     align-items: center;
-    flex-direction: column;
-    padding-top: 1.5vh;
+    justify-content: center;
+    padding: 1.5vh 0;
+}
+
+.cuisine-type-carousel {
+    height: 5.5vh;
+    width: 80%;
+    padding: 0 10%;
+    border: 1px solid red
+}
+
+@media screen and (max-width: 1350px) {
+    span {
+        position:static;
+    }
+    
+    .home-header-container {
+        height: 7.5vh;
+        padding: 1vh 0;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+
+    .home-header-container form input[type=text] {
+        width: 45vw;
+    }
 }
