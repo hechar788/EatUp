@@ -3,7 +3,11 @@ import BottomNav from '../components/BottomNav'
 import HomeHeader from '../components/home/HomeHeader'
 import '../styles/home.css'
 
-export default function Home(){
+type Props = {
+    isAuthenticated: boolean
+}
+
+export default function Home({isAuthenticated}: Props){
     return (
         <>
         <HomeHeader />
@@ -34,7 +38,7 @@ export default function Home(){
             <div><p>Merchant Template</p></div>
             <div><p>Merchant Template</p></div>
         </div>
-        <BottomNav />
+        <BottomNav isAuthenticated={isAuthenticated} />
         </>
     )
 }

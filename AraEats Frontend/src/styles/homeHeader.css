@@ -1,6 +1,6 @@
 .home-header-container form input[type=text] {
     width: 35vw;
-    height: 2vh;
+    height: 2.5vh;
 }
 
 span {
@@ -12,7 +12,7 @@ span {
 }
 
 span p {
-    margin: 0 .55vw 0 .45vw;
+    margin: 0 1vw 0 .45vw;
 }
 
 span svg {
@@ -24,29 +24,26 @@ span svg {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.5vh 0;
-}
-
-.cuisine-type-carousel {
-    height: 5.5vh;
-    width: 80%;
-    padding: 0 10%;
-    border: 1px solid red
+    padding: 1.75vh 0 1vh;
 }
 
 @media screen and (max-width: 1350px) {
     span {
         position:static;
     }
+
+    span p {
+        margin-right: 2.5vw
+    }
     
     .home-header-container {
         height: 7.5vh;
         padding: 1vh 0;
         flex-direction: column;
-        justify-content: space-around;
     }
 
     .home-header-container form input[type=text] {
-        width: 45vw;
+        width: 70vw;
+        margin-top: 2vh
     }
 }

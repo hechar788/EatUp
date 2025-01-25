@@ -1,27 +1,37 @@
 nav {
     width: 70vw;
     padding: 0 15vw;
-    height: 6.5vh;
-    position: absolute;
+    height: 6vh;
+    position: fixed;
     bottom: 0;
     right: 0;
-    background-color: #484848;
+    background-color: #4b4b4b;
     display: flex;
     align-items: center;
 }
 
-nav div {
+nav a, .nav-profile-button {
    width: 25%;
    height: 100%;
    display: flex;
-   flex-direction: column;
-   justify-content: space-evenly;
    align-items: center;
    color: white;
+   text-decoration: none;
+   cursor: pointer;
 }
 
-nav div:hover {
+nav a div, nav div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+nav a:hover, .nav-profile-button:hover, .hover {
     background-color: #414141;
+    text-decoration: none;
 }
 
 nav svg {
@@ -36,10 +46,62 @@ nav p {
     font-size: .75em;
 }
 
-@media (max-width: 768px) {
+.active {
+    background-color: #5a5a5a;
+}
+
+.active:hover {
+    background-color: #5a5a5a;
+}
+
+.nav-profile-buttons {
+    width: 17.5vw;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    justify-content: center;
+    align-items: center;
+    right: 15%;
+    bottom: 6%;
+    background-color: white;
+    border: 1px solid gray
+}
+
+.nav-profile-buttons div {
+    width: 100%;
+    height: 4.5vh;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer
+}
+
+.nav-profile-buttons div:hover {
+    background-color: #5a5a5a;
+    color: white;
+}
+
+.nav-profile-buttons a {
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-profile-buttons div:first-child {
+    border-bottom: 1px solid gray;
+}
+
+
+@media (max-width: 1000px) {
     nav {
       width: 85vw;
       padding: 0 7.5vw;
+    }
+
+    .nav-profile-buttons {
+        right: 7.5%;
+        width: 21%;
     }
   }
   

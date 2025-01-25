@@ -1,47 +1,79 @@
-import React from 'react';
-
-// import { NavLink } from "react-router";
-// import { LoginButton, LogoutButton } from './Oauth0/LoginLogout'
-// import { useAuth0 } from '@auth0/auth0-react';
-
+import React, { useState, useEffect, useRef } from 'react';
+import { NavLink } from "react-router";
+import { LoginButton, LogoutButton } from './Oauth0/LoginLogout';
 import ProfileSVG from "../assets/svg/profile-svg";
 import ExploreSVG from "../assets/svg/magnifying-glass-svg";
 import HomeSVG from "../assets/svg/home-svg";
 import ForYouSVG from "../assets/svg/film-reel-svg";
-import "../styles/nav.css"
+import "../styles/nav.css";
 
-// Only using OAuth0 SDK here to determine whether user is logged in before displaying the profile button 
+type Props = {
+    isAuthenticated: boolean;
+}
 
-export default function BottomNav() {
-    // const { isAuthenticated } = useAuth0();
+export default function BottomNav({ isAuthenticated }: Props) {
+    const [DisplayProfileButtons, setDisplayProfileButtons] = useState<boolean>(false);
+    const profileButtonsRef = useRef<HTMLDivElement>(null);
+    const profileButtonRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+            // Check if the click is outside both .nav-profile-button and .nav-profile-buttons
+            if (
+                profileButtonRef.current && !profileButtonRef.current.contains(event.target as Node) &&
+                profileButtonsRef.current && !profileButtonsRef.current.contains(event.target as Node)
+            ) {
+                setDisplayProfileButtons(false);
+            }
+        };
+
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, []);
 
     return (
-        <nav>
-            <div>
-                <HomeSVG />
-                <p>Home</p>
+        <>
+            <nav>
+                <NavLink to="/">
+                    <div>
+                        <HomeSVG />
+                        <p>Home</p>
+                    </div>
+                </NavLink>
 
-            </div>
-            <div>
-                <ExploreSVG />
-                <p>Explore</p>
+                <NavLink to="/test">
+                    <div>
+                        <ExploreSVG />
+                        <p>Explore</p>
+                    </div>
+                </NavLink>
 
-            </div>
-            <div>
-                <ForYouSVG />
-                <p>For You</p>
+                <NavLink to="/test">
+                    <div>
+                        <ForYouSVG />
+                        <p>For You</p>
+                    </div>
+                </NavLink>
 
-            </div>
-            <div>
-                <ProfileSVG />
-                <p>Account</p>
+                <div 
+                    ref={profileButtonRef}
+                    className={DisplayProfileButtons ? 'nav-profile-button hover' : 'nav-profile-button'} 
+                    onClick={() => { setDisplayProfileButtons(!DisplayProfileButtons) }}
+                >
+                    <ProfileSVG />
+                    <p>My Account</p>
+                </div>
+            </nav>
 
-            {/* THIS IS USED FOR DISPLAYING THE LOGIN/LOGOUT BUTTONS TO THE USER DEPENDING ON THE CURRENT AUTH FLOW, NEEDS TO BE UPDATED SO THAT WHEN THE PROFILE SVG IS CLICKED IT
-                GIVES THE FOLLOWNIG OPTIONS TO THE USER
-            {!isAuthenticated && <LoginButton />}
-            {isAuthenticated && <LogoutButton />}
-            {isAuthenticated && <NavLink to="/profile">View Profile</NavLink>} */}
-            </div>
-        </nav>
-    )
+            {DisplayProfileButtons && (
+                <div className='nav-profile-buttons' ref={profileButtonsRef}>
+                    {!isAuthenticated && <LoginButton />}
+                    {isAuthenticated && <div><NavLink to="/profile"><p>View Profile</p></NavLink></div>}
+                    {isAuthenticated && <LogoutButton />}
+                </div>
+            )}
+        </>
+    );
 }
