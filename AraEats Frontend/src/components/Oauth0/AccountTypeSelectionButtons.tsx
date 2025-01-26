@@ -15,9 +15,10 @@ export default function AccountTypeSelectionButtons() {
   }
 
   return (
-    <>
-      <button onClick={() => handleAccountTypeUpdate('customer')}>Customer</button>
-      <button onClick={() => handleAccountTypeUpdate('merchant')}>Food Merchant</button>
-    </>
+    <div>
+      <button className='account-type-selection-button' onClick={() => handleAccountTypeUpdate('customer')}><h3>Customer</h3></button>
+      <h2> Or </h2>
+      <button className='account-type-selection-button' onClick={() => handleAccountTypeUpdate('merchant')}><h3>Food Merchant</h3></button>
+    </div>
   );
 }

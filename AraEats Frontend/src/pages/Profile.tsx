@@ -2,15 +2,16 @@ import React from 'react';
 import Nav from '../components/BottomNav'
 import ProfileContent from '../components/Oauth0/ProfileContent'
 
-type PropsTypes = {
-    accountType: 'new_user' | 'merchant' | 'customer'
+type Props = {
+    accountType: 'new_user' | 'merchant' | 'customer',
+    isAuthenticated: boolean
 }
 
-export default function Profile({ accountType }: PropsTypes) {
+export default function Profile({ accountType, isAuthenticated }: Props) {
     return (
     <>
-        <Nav />
         <ProfileContent accountType={accountType} />
+        <Nav isAuthenticated={isAuthenticated}/>
     </>
     )
 }

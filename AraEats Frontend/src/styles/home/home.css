@@ -13,6 +13,7 @@
     margin-top: 2.5vh;
     border: 1px solid grey;
     text-align: center;
+    cursor: pointer;
 }
 
 .home-list-main div:last-child {

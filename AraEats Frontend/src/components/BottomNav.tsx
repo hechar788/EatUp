@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { NavLink } from "react-router";
+import { NavLink, Link, useMatch } from "react-router";
 import { LoginButton, LogoutButton } from './Oauth0/LoginLogout';
 import ProfileSVG from "../assets/svg/profile-svg";
 import ExploreSVG from "../assets/svg/magnifying-glass-svg";
@@ -12,6 +12,7 @@ type Props = {
 }
 
 export default function BottomNav({ isAuthenticated }: Props) {
+    const match = useMatch('/profile');
     const [DisplayProfileButtons, setDisplayProfileButtons] = useState<boolean>(false);
     const profileButtonsRef = useRef<HTMLDivElement>(null);
     const profileButtonRef = useRef<HTMLDivElement>(null);
@@ -43,14 +44,14 @@ export default function BottomNav({ isAuthenticated }: Props) {
                     </div>
                 </NavLink>
 
-                <NavLink to="/test">
+                <NavLink to="/profile">
                     <div>
                         <ExploreSVG />
                         <p>Explore</p>
                     </div>
                 </NavLink>
 
-                <NavLink to="/test">
+                <NavLink to="/profile">
                     <div>
                         <ForYouSVG />
                         <p>For You</p>
@@ -59,7 +60,7 @@ export default function BottomNav({ isAuthenticated }: Props) {
 
                 <div 
                     ref={profileButtonRef}
-                    className={DisplayProfileButtons ? 'nav-profile-button hover' : 'nav-profile-button'} 
+                    className={`nav-profile-button${DisplayProfileButtons ? ' hover' : match ? ' active' : ''}`}
                     onClick={() => { setDisplayProfileButtons(!DisplayProfileButtons) }}
                 >
                     <ProfileSVG />
@@ -70,7 +71,7 @@ export default function BottomNav({ isAuthenticated }: Props) {
             {DisplayProfileButtons && (
                 <div className='nav-profile-buttons' ref={profileButtonsRef}>
                     {!isAuthenticated && <LoginButton />}
-                    {isAuthenticated && <div><NavLink to="/profile"><p>View Profile</p></NavLink></div>}
+                    {isAuthenticated && <div><Link to="/profile"><p>View Profile</p></Link></div>}
                     {isAuthenticated && <LogoutButton />}
                 </div>
             )}

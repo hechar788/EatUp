@@ -1,7 +1,7 @@
 import React from 'react';
 import CuisineTypeCarousel from './CuisineTypeCarousel';
 import LocationSVG from '../../assets/svg/location-pin-svg';
-import '../../styles/homeHeader.css'
+import '../../styles/home/homeHeader.css'
 
 export default function HomeHeader() {
     let changeLocationPopup = () => {

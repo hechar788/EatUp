@@ -1,5 +1,5 @@
 import React from "react"
-import '../../styles/CuisineTypeCarousel.css'
+import '../../styles/home/CuisineTypeCarousel.css'
 
 export default function CuisineTypeCarousel(){
     return (

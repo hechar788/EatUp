@@ -11,6 +11,10 @@ span {
     left: 10%;
 }
 
+span a {
+    cursor: pointer;
+}
+
 span p {
     margin: 0 1vw 0 .45vw;
 }

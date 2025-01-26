@@ -1,7 +1,7 @@
 import React from 'react';
 import BottomNav from '../components/BottomNav'
 import HomeHeader from '../components/home/HomeHeader'
-import '../styles/home.css'
+import '../styles/home/home.css'
 
 type Props = {
     isAuthenticated: boolean
