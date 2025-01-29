@@ -1,0 +1,52 @@
+form {
+    text-align: center;
+  }
+  
+  label {
+    display: block;
+    letter-spacing: 4px;
+    padding-top: 30px;
+    text-align: center;
+  }
+  label .label-text {
+    cursor: text;
+    font-size: 20px;
+    line-height: 20px;
+    text-transform: uppercase;
+    -moz-transform: translateY(-2vh);
+    -ms-transform: translateY(-2vh);
+    -webkit-transform: translateY(-2vh);
+    transform: translateY(-2vh);
+    transition: all 0.3s;
+  }
+  label input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    font-size: 36px;
+    letter-spacing: -1px;
+    outline: 0;
+    padding: 5px 20px;
+    text-align: center;
+    transition: all 0.3s;
+    width: 200px;
+  }
+  label input:focus {
+    max-width: 100%;
+    width: 400px;
+  }
+  label input:focus + .label-text {
+    color: #F0F0F0;
+    font-size: 13px;
+    -moz-transform: translateY(-7.5vh);
+    -ms-transform: translateY(-7.5vh);
+    -webkit-transform: translateY(-7.5vh);
+    transform: translateY(-7.5vh);
+  }
+  label input:valid + .label-text {
+    font-size: 13px;
+    -moz-transform: translateY(-74px);
+    -ms-transform: translateY(-74px);
+    -webkit-transform: translateY(-74px);
+    transform: translateY(-74px);
+  }
