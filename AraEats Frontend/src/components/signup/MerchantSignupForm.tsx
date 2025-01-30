@@ -19,39 +19,64 @@ export default function MerchantSignupForm() {
     );
 
     const formElements = [
+        <>
+        <div className="form-header-wrapper">
+        <h1>Kia ora anō,</h1>
+        <h1>Fill in some business details to continue.</h1>
+        </div>
         <label key="name-input">
-            <h1>Business Name</h1>
             <input
                 type="text"
-                onChange={e => updateProperty('name', e.target.value)}
+                required
+                onChange={e => updateProperty('businessName', e.target.value)}
             />
-        </label>,
+            <div className="label-text">Business Name</div>
+        </label>
         <label key="address-input">
-            <h1>Business Address</h1>
             <input
                 type="text"
+                required
                 onChange={e => updateProperty('address', e.target.value)}
             />
-        </label>,
-        <label key="email-input">
-            <h1>Primary Business Contact</h1>
+            <div className="label-text">Business Address</div>
+        </label>
+        </>,
+        <>
+        <h1>Ka Pai,</h1>
+        <h1>Now fill in your Primary Contacts details.</h1>
+        <label key="pc-name-input">
             <input
                 type="email"
-                onChange={e => updateProperty('email', e.target.value)}
+                required
+                onChange={e => updateProperty('pc_firstName', e.target.value)}
             />
-        </label>,
-        <label key="dob-input">
-            <h1>Date of Birth</h1>
-            <input
-                type="text"
-            />
-        </label>,
-        <label key="ph-input">
-            <h1>Phone Number</h1>
-            <input
-                type="text"
-            />
+            <div className="label-text">First Name</div>
         </label>
+        <label key="pc-surname-input">
+            <input
+                type="text"
+                required
+                onChange={e => updateProperty('pc_lastName', e.target.value)}
+            />
+            <div className="label-text">Surname</div>
+        </label>
+        <label key="pc-email-input">
+            <input
+                type="email"
+                required
+                onChange={e => updateProperty('pc_email', e.target.value)}
+            />
+            <div className="label-text">Email</div>
+        </label>
+        <label key="ph-input">
+            <input
+                type="text"
+                required
+                onChange={e => updateProperty('pc_phone', e.target.value)}
+            />
+            <div className="label-text">Phone Number</div>
+        </label>
+        </>
     ]
 
     const updateProperty = (property: string, value: string) => {
@@ -66,7 +91,7 @@ export default function MerchantSignupForm() {
             <form>
                 {
                     index > 0 &&
-                    <button onClick={(e) => {
+                    <button className='go-back-button' onClick={(e) => {
                         e.preventDefault();
                         setIndex((prevIndex) => { return prevIndex - 1 })
                     }
@@ -79,12 +104,12 @@ export default function MerchantSignupForm() {
 
                 {
                     index < formElements.length - 1 ?
-                        <button onClick={(e) => {
+                        <button className="continue-button" onClick={(e) => {
                             e.preventDefault();
                             index < formElements.length - 1
                             setIndex((prevIndex) => { return prevIndex + 1 })
                         }
-                        }>Continue</button> : <button>Finish</button>
+                        }>Continue</button> : <button className="continue-button">Finish</button>
                 }
             </form>
         </>

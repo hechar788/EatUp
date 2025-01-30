@@ -1,0 +1,115 @@
+.account-type-selection-page {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.account-type-selection-page form {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 15vw;
+    width: 40%;
+    height: 100vh;
+}
+
+.continue-button,
+.go-back-button {
+    width: 10em;
+    height: 3.25vh;
+    border: none
+}
+
+.go-back-button {
+    position: relative;
+    top: 2.5%;
+}
+
+.continue-button {
+    position: absolute;
+    top: 92.5%;
+    left: 55.5%;
+}
+
+.phone-number {
+    padding-bottom: 25vh;
+}
+
+.continue-button:hover {
+    background-color: #5a5a5a;
+    color: white;
+}
+
+.form-header-wrapper {
+    align-items: center;
+    width: 45vw;
+}
+
+.account-type-selection-page form h1 {
+    text-align: left;
+    width: 15em
+}
+
+.account-type-selection-page form h1:first-of-type {
+    margin-top: 9.25vh;
+}
+
+.account-type-selection-page form h1:last-of-type {
+    margin-bottom: 5.5vh;
+    margin-top: 0;  
+}
+
+.account-type-selection-page form label:last-of-type {
+    margin-bottom: 7.5vh;
+}
+
+.account-type-selection-page form label {
+    display: block;
+    letter-spacing: 4px;
+    margin: 7.25vh 0 0 0;
+    width: 15em;
+    text-align: left;
+}
+
+.account-type-selection-page form label .label-text {
+    cursor: text;
+    font-size: 1em;
+    line-height: .5em;
+    text-transform: uppercase;
+    -moz-transform: translateY(-2vh);
+    -ms-transform: translateY(-2vh);
+    -webkit-transform: translateY(-2vh);
+    transform: translateY(-2vh);
+    transition: all 0.3s;
+}
+
+.account-type-selection-page form label input {
+    background-color: transparent;
+    border: 0;
+    border-bottom: 2px solid #4A4A4A;
+    font-size: 1.45em;
+    outline: 0;
+    text-align: left;
+    transition: all 0.3s;
+    width:  19.5em;
+}
+
+.account-type-selection-page form label input:focus+.label-text {
+    font-size: .85em;
+    -moz-transform: translateY(-6.25vh);
+    -ms-transform: translateY(-6.25vh);
+    -webkit-transform: translateY(-6.25vh);
+    transform: translateY(-6.25vh);
+}
+
+.account-type-selection-page form label input:valid+.label-text {
+    font-size: .75em;
+    -moz-transform: translateY(-6.25vh);
+    -ms-transform: translateY(-6.25vh);
+    -webkit-transform: translateY(-6.25vh);
+    transform: translateY(-6.25vh);
+}
+
+.second-index-form-element-header {
+    padding-top: 3.5vh;
+}

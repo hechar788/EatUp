@@ -4,6 +4,8 @@ import AccountTypeSelectionButtons from "../components/signup/AccountTypeSelecti
 import CustomerSignupForm from '../components/signup/CustomerSignupFom';
 import MerchantSignupForm from '../components/signup/MerchantSignupForm';
 import '../styles/signup/accountTypeSelection.css'
+import '../styles/signup/forms.css'
+
 
 type UserSelectedAccountType = 'merchant' | 'customer' | undefined;
 type Props = {
@@ -30,6 +32,9 @@ export default function AccountTypeSelection({ accountType }: Props) {
 
     return (
         <div className='account-type-selection-page'>
+        {
+            userSelectedAccountType == undefined ?
+        <div className='account-type-selection'>
             {
                 // !userSelectedAccountType &&
                 <>
@@ -39,14 +44,15 @@ export default function AccountTypeSelection({ accountType }: Props) {
                     <AccountTypeSelectionButtons setUserSelectedAccountType={setUserSelectedAccountType} />
                 </>
             }
-            {
-                userSelectedAccountType == 'customer' &&
-                <CustomerSignupForm/>
-            }
-            {
-                userSelectedAccountType == 'merchant' &&
-                <MerchantSignupForm />
-            }
+        </div> :
+
+            userSelectedAccountType == 'customer' ?
+            <CustomerSignupForm/>
+            :
+            userSelectedAccountType == 'merchant' &&
+            <MerchantSignupForm />
+        
+        }
         </div>
     )
 }
