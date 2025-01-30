@@ -1,10 +1,12 @@
-.pac-container{
+/* .pac-container{
     z-index: 10000 !important;
     position: absolute !important;
     display: block !important;
     visibility: visible !important;
     position: absolute !important;
-}
+    height: auto !important;
+    overflow-x: scroll; */
+/* } */
 
 form{
     position: relative;
