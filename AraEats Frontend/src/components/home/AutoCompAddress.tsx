@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
 import '../../styles/addressForm/AutoCompAddress.css';
 
-export default function AutoCompAddress() {
+export default function AutoCompAddress({ setCountry }) {
     const inputRef = useRef<HTMLInputElement>(null);
 
     useEffect(() => {
@@ -45,6 +45,7 @@ export default function AutoCompAddress() {
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
                 console.log("Selected Place:", place);
+                setCountry({address: place.formatted_address})
             });
         };
 

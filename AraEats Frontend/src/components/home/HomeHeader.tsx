@@ -7,10 +7,7 @@ import '../../styles/home/homeHeader.css';
 
 export default function HomeHeader() {
     const [isPopupVisible, setIsPopupVisible] = useState(false);
-
-    const changeLocationPopup = () => {
-        setIsPopupVisible(true);
-    };
+    const [country, setCountry] = useState({address: 'Christchurch, New Zealand'});
 
     const closePopup = () => {
         setIsPopupVisible(false);
@@ -23,18 +20,17 @@ export default function HomeHeader() {
     return (
         <>
        <div className="home-header-container">
-            <span>
+            <span className="home-header-span">
                 <LocationSVG />
-                <p>Christchruch, New Zealand</p>
-                {/* Location change to the City and Country of prompt */}
-                <a onClick={() => { changeLocationPopup() }}><strong>Change...</strong></a>
+                <p>{country.address}</p>
+                <a onClick={() => { setIsPopupVisible(true) }}><strong>Change...</strong></a>
             </span>
             {/* Popup Window */}
             {isPopupVisible && (
                     <div className="popUpWindow">
                         <button className='close' onClick={closePopup}>Close</button>
                         <button className='save' onClick={savePopup}>Save Location</button>
-                        <AutoCompAddress />
+                        <AutoCompAddress setCountry={setCountry} />
                     </div>
                 )}
             <form>

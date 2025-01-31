@@ -10,5 +10,58 @@
 
 form{
     position: relative;
-    overflow: visible !important;
+    overflow-y: scroll;
+}
+
+/* Google Places Autocomplete dropdown container */
+.pac-container {
+    background-color: white !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    font-family: Verdana, sans-serif;
+    font-size: 14px;
+    width: auto;
+}
+
+/* Google Autocomplete individual suggestion items */
+.pac-item {
+    padding: 10px;
+    cursor: pointer;
+    height: auto !important;
+    max-height: 150px !important;
+    transition: background-color 0.2s ease-in-out;
+    width: 100%;
+}
+
+/* Highlighted option */
+.pac-item:hover {
+    background-color: #f0f0f0;
+}
+
+/* Main text in autocomplete results */
+.pac-item .pac-item-query {
+    font-weight: bold;
+    color: #333;
+}
+
+/* Secondary text (address details) */
+.pac-item span {
+    color: #666;
+    font-size: 12px;
+}
+
+/* Prevent the dropdown from being cut off */
+.pac-container::after {
+    content: "";
+    display: block;
+    height: 20px;
+}
+
+.pac-container:after {
+    /* Disclaimer: not needed to show 'powered by Google' if also a Google Map is shown */
+    background-image: none !important;
+    height: 0px;
+}
+
+.pac-container:after body {
+    overflow: hidden;
 }
