@@ -1,7 +1,8 @@
 .pac-target-input {
     width: 90%;
     height: 2.5vh;
-    margin: 5% 0 0 5%;
+    margin: 5% 0 0 4.5%;
+    padding: 0.5%
 }
 
 /* Google Places Autocomplete dropdown container */
@@ -12,6 +13,8 @@
     font-size: 14px;
     margin-top: .5vh;
     width: auto;
+    z-index: 1000;
+    pointer-events: auto !important;
 }
 
 /* Google Autocomplete individual suggestion items */
@@ -22,6 +25,7 @@
     max-height: 150px !important;
     transition: background-color 0.2s ease-in-out;
     width: 100%;
+    touch-action: manipulation;
 }
 
 /* Highlighted option */
@@ -54,6 +58,12 @@
     height: 0px;
 }
 
-.pac-container:after body {
-    overflow: hidden;
+@media screen and (max-width: 1200px) {
+    .pac-item span {        
+        font-size: 10px;
+    }
+
+    .pac-target-input {
+        margin-top: 6.5%
+    }
 }

@@ -34,6 +34,7 @@
 @media screen and (max-width: 1350px) {
     .home-header-span {
         position:static;
+        margin-top: 1vh;
     }
 
     .home-header-span p {
@@ -49,5 +50,9 @@
     .home-header-container form input[type=text] {
         width: 70vw;
         margin-top: 2vh
+    }
+
+    .cuisine-type-carousel {
+        margin-top: 2vh;
     }
 }

@@ -16,9 +16,9 @@ export default function LocationPicker(
     ) {
     return (
         locationPopupVisible && (
-            <div className="popUpWindow">
-                <div className="address-selection-container">
-                    <h1>Enter your neighbourhoods address</h1>
+            <div className="popUpWindow" onClick={()=>setLocationPopupVisible(false)}>
+                <div className="address-selection-container" onClick={(e)=>{e.stopPropagation()}}>
+                    <h1>Enter your neighbourhood address</h1>
                     <AutoCompAddress setCountry={setCountry} />
                     <button className='close' onClick={()=>setLocationPopupVisible(false)}>Close</button>
                 </div>

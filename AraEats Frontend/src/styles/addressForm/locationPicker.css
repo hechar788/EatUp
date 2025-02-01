@@ -50,3 +50,15 @@
     color: black;
     border: 1px solid #4b4b4b;
 }
+
+@media screen and (max-width: 1200px) {
+    .address-selection-container {
+        width: 80vw;
+        left: 10%;
+        top: 17.5%;
+    }
+
+    .address-selection-container h1 {
+        font-size: 1em;
+    }
+}
