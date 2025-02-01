@@ -1,16 +1,7 @@
-/* .pac-container{
-    z-index: 10000 !important;
-    position: absolute !important;
-    display: block !important;
-    visibility: visible !important;
-    position: absolute !important;
-    height: auto !important;
-    overflow-x: scroll; */
-/* } */
-
-form{
-    position: relative;
-    overflow-y: scroll;
+.pac-target-input {
+    width: 90%;
+    height: 2.5vh;
+    margin: 5% 0 0 5%;
 }
 
 /* Google Places Autocomplete dropdown container */
@@ -19,6 +10,7 @@ form{
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
     font-family: Verdana, sans-serif;
     font-size: 14px;
+    margin-top: .5vh;
     width: auto;
 }
 

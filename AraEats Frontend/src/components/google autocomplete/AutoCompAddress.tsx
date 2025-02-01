@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import '../../styles/addressForm/AutoCompAddress.css';
+import '../../styles/addressForm/autoCompAddress.css';
 
 export default function AutoCompAddress({ setCountry }) {
     const inputRef = useRef<HTMLInputElement>(null);
@@ -32,20 +32,24 @@ export default function AutoCompAddress({ setCountry }) {
 
         const initAutocomplete = () => {
             if (!inputRef.current) return;
-
+        
             if (!window.google || !window.google.maps || !window.google.maps.places) {
                 console.error("Google Maps API is not available yet.");
                 return;
             }
-
+        
             const autocomplete = new google.maps.places.Autocomplete(inputRef.current, {
                 types: ["geocode"],
+                componentRestrictions: { country: "NZ" } // Restrict to New Zealand
             });
-
+        
             autocomplete.addListener("place_changed", () => {
                 const place = autocomplete.getPlace();
                 console.log("Selected Place:", place);
-                setCountry({address: place.formatted_address})
+                setCountry({
+                    address: place.formatted_address,
+                    vicinity: place.vicinity
+                });
             });
         };
 
@@ -53,9 +57,9 @@ export default function AutoCompAddress({ setCountry }) {
     }, []);
 
     return (
-        <form>
+        <>
             <input ref={inputRef} type="text" placeholder="Start typing address..." />
             <div id="target"></div>
-        </form>
+        </>
     );
 }

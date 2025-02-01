@@ -9,6 +9,8 @@ export default function CuisineTypeCarousel() {
         'Mexican',
         'Chinese',
         'Japanese',
+        'Pizza'
+
     ]
 
     return (

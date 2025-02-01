@@ -1,42 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import CuisineTypeCarousel from './CuisineTypeCarousel';
-import AutoCompAddress from './AutoCompAddress';
 import LocationSVG from '../../assets/svg/location-pin-svg';
 import '../../styles/home/homeHeader.css';
 
 
-export default function HomeHeader() {
-    const [isPopupVisible, setIsPopupVisible] = useState(false);
-    const [country, setCountry] = useState({address: 'Christchurch, New Zealand'});
-
-    const closePopup = () => {
-        setIsPopupVisible(false);
-    };
-
-    const savePopup = () => {
-        setIsPopupVisible(false);
-    };
-
+export default function HomeHeader({country, setLocationPopupVisible}) {
     return (
         <>
        <div className="home-header-container">
+
             <span className="home-header-span">
                 <LocationSVG />
-                <p>{country.address}</p>
-                <a onClick={() => { setIsPopupVisible(true) }}><strong>Change...</strong></a>
+                <p>{`${country.vicinity}, New Zealand`}</p>
+                <a onClick={() => { setLocationPopupVisible(true) }}><strong>Change...</strong></a>
             </span>
-            {/* Popup Window */}
-            {isPopupVisible && (
-                    <div className="popUpWindow">
-                        <button className='close' onClick={closePopup}>Close</button>
-                        <button className='save' onClick={savePopup}>Save Location</button>
-                        <AutoCompAddress setCountry={setCountry} />
-                    </div>
-                )}
+
             <form>
                 <input type="text" placeholder='Search Here...' />
             </form>
         </div>
+
         <CuisineTypeCarousel />
         </>
 

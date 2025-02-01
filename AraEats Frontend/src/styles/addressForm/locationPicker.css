@@ -1,0 +1,52 @@
+.popUpWindow {
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.175);
+    box-shadow: 0 5px 15px #00000033;
+    z-index: 10;
+}
+
+.address-selection-container {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 10%;
+    left: 30%;
+    width: 40vw;
+    height: 60vh;
+    background-color: white;
+    z-index: 11;
+}
+
+.address-selection-container h1 {
+    font-size: 1.5em;
+    width: 90;
+    margin: 5% auto 1.5%;
+}
+
+.popUpWindow button {
+    margin-top: 10px;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+    margin-bottom: 10px;
+    border-radius: 4px;
+}
+
+.close {
+    position: absolute;
+    bottom: 5%;
+    left: 37.5%;
+    background: #4b4b4b;
+    color: white;
+    width: 25%;
+    height: 6.5%
+}
+
+.close:hover {
+    background: white;
+    color: black;
+    border: 1px solid #4b4b4b;
+}
