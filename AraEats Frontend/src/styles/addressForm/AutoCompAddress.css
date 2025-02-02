@@ -13,7 +13,7 @@
     font-size: 14px;
     margin-top: .5vh;
     width: auto;
-    z-index: 1000;
+    z-index: 10000 !important;
     pointer-events: auto !important;
 }
 
@@ -25,6 +25,7 @@
     max-height: 150px !important;
     transition: background-color 0.2s ease-in-out;
     width: 100%;
+    z-index: 10000;
     touch-action: manipulation;
 }
 
