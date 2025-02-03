@@ -23,8 +23,7 @@
 }
 
 .go-back-button {
-    position: relative;
-    top: 2.5%;
+    margin: 1.5vh auto 0;
 }
 
 .continue-button {
@@ -113,6 +112,24 @@
     padding-top: 3.5vh;
 }
 
+@media screen and (max-width: 1000px) {
+    .account-type-selection-page form {
+        width: 50%;
+    }
+
+    .merchant-signup-header {
+        font-size: 1.5em !important;
+    }
+
+    .merchant-signup-header-second {
+        font-size: 1.4em !important;
+    }
+
+    .merchant-finish-button {
+        margin-top: 5vh;
+    }
+}
+
 @media screen and (max-width: 1415px) {
     .account-type-selection-page form h1 {
         font-size: 1.75em;
@@ -125,14 +142,8 @@
     }
 }
 
-@media screen and (max-width: 1000px) {
-    .account-type-selection-page form {
-        width: 50%;
-    }
-}
-
 @media screen and (max-width: 770px) {
     .account-type-selection-page form {
-        width: 75%;
+        width: 87.5%;
     }
 }

@@ -21,8 +21,8 @@ export default function MerchantSignupForm() {
     const formElements = [
         <>
         <div className="form-header-wrapper">
-        <h1>Kia ora anō,</h1>
-        <h1>Fill in some business details to continue.</h1>
+        <h1 className="merchant-signup-header">Kia ora anō,</h1>
+        <h1 className="merchant-signup-header">Fill in some business details to continue.</h1>
         </div>
         <label key="name-input">
             <input
@@ -42,8 +42,8 @@ export default function MerchantSignupForm() {
         </label>
         </>,
         <>
-        <h1>Ka Pai,</h1>
-        <h1>Now fill in your Primary Contacts details.</h1>
+        <h1 className="merchant-signup-header">Ka Pai,</h1>
+        <h1 className="merchant-signup-header-second">Now fill in your Primary Contacts details.</h1>
         <label key="pc-name-input">
             <input
                 type="email"
@@ -109,7 +109,7 @@ export default function MerchantSignupForm() {
                             index < formElements.length - 1
                             setIndex((prevIndex) => { return prevIndex + 1 })
                         }
-                        }>Continue</button> : <button className="continue-button">Finish</button>
+                        }>Continue</button> : <button className="continue-button merchant-finish-button">Finish</button>
                 }
             </form>
         </>
