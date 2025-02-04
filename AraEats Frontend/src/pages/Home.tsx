@@ -4,13 +4,18 @@ import HomeHeader from '../components/home/HomeHeader'
 import LocationPicker from '../components/google autocomplete/LocationPicker';
 import '../styles/home/home.css'
 
+type Location = {
+    address: string | undefined,
+    vicinity: string | undefined
+}
+
 type Props = {
     isAuthenticated: boolean
 }
 
 export default function Home({ isAuthenticated }: Props) {
-    const [locationPopupVisible, setLocationPopupVisible] = useState(false);
-    const [country, setCountry] = useState(
+    const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
+    const [location, setLocation] = useState<Location | undefined>(
         {
             address: 'Christchurch, New Zealand',
             vicinity: 'Christchurch'
@@ -32,8 +37,12 @@ export default function Home({ isAuthenticated }: Props) {
 
     return (
         <>
-            <HomeHeader country={country} setLocationPopupVisible={setLocationPopupVisible} />
-            <LocationPicker locationPopupVisible={locationPopupVisible} setLocationPopupVisible={setLocationPopupVisible} setCountry={setCountry} />
+            <HomeHeader location={location} setLocationPopupVisible={setLocationPopupVisible} />
+            
+            {
+                locationPopupVisible && <LocationPicker setLocationPopupVisible={setLocationPopupVisible} setLocation={setLocation} />
+            }
+
             <div className="home-list-main">
                 <div><p>Merchant Template</p></div>
                 <div><p>Merchant Template</p></div>

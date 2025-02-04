@@ -1,6 +1,12 @@
 import React, { useState } from "react"
+import LocationPicker from "../google autocomplete/LocationPicker";
 
-type UserData = {
+type Location = {
+    address: string | undefined,
+    vicinity: string | undefined
+}
+
+type MerchantSignupData = {
     businessName: string | undefined;
     address: string | undefined;
     pc_firstName: string | undefined;
@@ -10,13 +16,22 @@ type UserData = {
 }
 
 export default function MerchantSignupForm() {
-    let [index, setIndex] = useState(0);
-    let [merchantData, setMerchantData] = useState<UserData>(
+    const [index, setIndex] = useState(0);
+    const [location, setLocation] = useState<Location>();
+    const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
+    const [merchantData, setMerchantData] = useState<MerchantSignupData>(
         {
             businessName: undefined, address: undefined, 
             pc_firstName: undefined, pc_lastName: undefined, pc_email: undefined, pc_phone: undefined
         }
     );
+
+    const updateProperty = (property: string, value: string) => {
+        setMerchantData((prevMerchantData) => ({
+            ...prevMerchantData,
+            [property]: value,
+        }));
+    };
 
     const formElements = [
         <>
@@ -36,7 +51,8 @@ export default function MerchantSignupForm() {
             <input
                 type="text"
                 required
-                onChange={e => updateProperty('address', e.target.value)}
+                value={location?.address}
+                onClick={e => setLocationPopupVisible(true)}
             />
             <div className="label-text">Business Address</div>
         </label>
@@ -79,13 +95,6 @@ export default function MerchantSignupForm() {
         </>
     ]
 
-    const updateProperty = (property: string, value: string) => {
-        setMerchantData((prevMerchantData) => ({
-            ...prevMerchantData,
-            [property]: value,
-        }));
-    };
-
     return (
         <>
             <form>
@@ -112,6 +121,10 @@ export default function MerchantSignupForm() {
                         }>Continue</button> : <button className="continue-button merchant-finish-button">Finish</button>
                 }
             </form>
+
+            {
+                    locationPopupVisible && <LocationPicker setLocation={setLocation} setLocationPopupVisible={setLocationPopupVisible}/>
+            }
         </>
     )
 }
