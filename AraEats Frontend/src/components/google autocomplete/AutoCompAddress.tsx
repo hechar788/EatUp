@@ -1,5 +1,4 @@
 import React, { useEffect, useRef } from "react";
-import '../../styles/addressForm/autoCompAddress.css';
 
 export default function AutoCompAddress({ setCountry }) {
     const inputRef = useRef<HTMLInputElement>(null);

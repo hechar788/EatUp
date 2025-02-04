@@ -1,24 +1,19 @@
-import React, { useEffect } from "react";
-import { useSearchParams } from "react-router";
+import React from "react";
 
 // UNFINISHED
 
-export default function Searchbar() {
-    const [searchParams, setSearchParams] = useSearchParams({
-        search: '',
-        exampleFilter: ''
-    });
-
-    useEffect(()=>{
-        console.log(searchParams)
-    }, [searchParams])
-
+export default function Searchbar({ searchParams, setSearchParams }) {
     return (
         <form>
-            <input type="text" placeholder='Search Here...' onChange={e => setSearchParams(prev=>{
+            <input 
+            type="text" 
+            placeholder={'Search here...'} 
+            value={searchParams.get('search') || ''} 
+            onChange={e => setSearchParams(prev=>{
                 prev.set('search', e.target.value);
                 return prev
-            }, {replace: true})}/>
+            }, {replace: true})}
+            />
         </form>
     )
 }

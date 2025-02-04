@@ -1,8 +1,7 @@
-import React, { useState } from "react"
+import React from "react"
 import '../../styles/home/CuisineTypeCarousel.css'
 
-export default function CuisineTypeCarousel() {
-    const [activeCuisineType, setActiveCuisineType] = useState<string>();
+export default function CuisineTypeCarousel({ searchParams, setSearchParams }) {
     let cuisineTypes = [
         'Bakery',
         'Deserts',
@@ -18,13 +17,19 @@ export default function CuisineTypeCarousel() {
             {cuisineTypes.map((cuisine) => {
                 return (
                 <div
-                className={activeCuisineType == cuisine ? "cuisine-type active" : "cuisine-type"}
+                key={cuisine}
+                className={searchParams.get('category') == cuisine ? "cuisine-type active" : "cuisine-type"}
                 onClick={() => {
-                    if (activeCuisineType != cuisine) {
-                        setActiveCuisineType(cuisine)
+                    if (searchParams.get('category') != cuisine) {
+                        setSearchParams(prev=> {
+                            prev.set('category', cuisine)
+                            return prev
+                        })
                     } else {
-                        setActiveCuisineType('')
-                    }
+                        setSearchParams(prev=> {
+                            prev.set('category', '')
+                            return prev
+                        })                    }
                 }}
             >
                 <p className="cuisine-type-svg">picture</p>

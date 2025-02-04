@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from "react"
 import AutoCompAddress from "./AutoCompAddress"
 import '../../styles/addressForm/locationPicker.css'
+import '../../styles/addressForm/autoCompAddress.css';
 
 type Location = {
     address: string | undefined,
