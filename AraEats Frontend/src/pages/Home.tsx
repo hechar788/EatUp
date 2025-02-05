@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useSearchParams } from 'react-router';
 import BottomNav from '../components/BottomNav'
 import HomeHeader from '../components/home/HomeHeader'
 import LocationPicker from '../components/google autocomplete/LocationPicker';
@@ -14,6 +15,15 @@ type Props = {
 }
 
 export default function Home({ isAuthenticated }: Props) {
+    const [searchParams, setSearchParams] = useSearchParams({
+        search: '',
+        category: ''
+    });
+
+    useEffect(() => {
+        console.log(searchParams)
+    }, [searchParams])
+
     const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
     const [location, setLocation] = useState<Location | undefined>(
         {
@@ -25,20 +35,14 @@ export default function Home({ isAuthenticated }: Props) {
     useEffect(() => {
         if (locationPopupVisible) {
             document.body.style.overflow = 'hidden'; // Disable scrolling
-        } else {
-            document.body.style.overflow = ''; // Re-enable scrolling
-        }
-
-        // Clean up the effect when component unmounts
-        return () => {
-            document.body.style.overflow = '';
-        };
+        } else { document.body.style.overflow = ''; } // Re-enable scrolling 
+        return () => {document.body.style.overflow = '';} // Cleanup
     }, [locationPopupVisible]);
 
     return (
         <>
-            <HomeHeader location={location} setLocationPopupVisible={setLocationPopupVisible} />
-            
+            <HomeHeader searchParams={searchParams} setSearchParams={setSearchParams} location={location} setLocationPopupVisible={setLocationPopupVisible} />
+
             {
                 locationPopupVisible && <LocationPicker setLocationPopupVisible={setLocationPopupVisible} setLocation={setLocation} />
             }

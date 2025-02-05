@@ -1,21 +1,11 @@
-import React, { useEffect } from 'react';
-import { useSearchParams } from "react-router";
+import React from 'react';
 import CuisineTypeCarousel from './CuisineTypeCarousel';
 import LocationSVG from '../../assets/svg/location-pin-svg';
 import Searchbar from './Searchbar';
 import '../../styles/home/homeHeader.css';
 
 
-export default function HomeHeader({location, setLocationPopupVisible}) {
-    const [searchParams, setSearchParams] = useSearchParams({
-        search: '',
-        category: ''
-    });
-
-    useEffect(()=>{
-        console.log(searchParams)
-    }, [searchParams])
-
+export default function HomeHeader({searchParams, setSearchParams, location, setLocationPopupVisible}) {
     return (
         <>
        <div className="home-header-container">
