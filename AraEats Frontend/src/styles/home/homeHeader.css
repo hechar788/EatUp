@@ -1,6 +1,21 @@
 .home-header-container form input[type=text] {
-    width: 35vw;
-    height: 2.5vh;
+    width: 38.5vw;
+    height: 3vh;
+    padding-left: .75vw;
+    font-size: .825em;
+}
+
+.searchbar-dropdown {
+    background: white;
+    position: absolute;
+    top: 6.295%;
+    right: 29.95%;
+    border-radius: 7.5px;
+    height: 20vh;
+    width: 38.5vw;
+    padding: 0 .75vw;
+    z-index: 10000;
+    border: 1px solid grey
 }
 
 .home-header-span {
@@ -8,7 +23,7 @@
     align-items: center;
     justify-content: space-evenly;
     position: absolute;
-    left: 10%;
+    left: 8.5%;
 }
 
 .home-header-span a {
@@ -28,13 +43,13 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1.75vh 0 1vh;
+    margin-top: 2vh
 }
 
 @media screen and (max-width: 1350px) {
     .home-header-span {
         position:static;
-        margin-top: 1vh;
+        margin-top: 1.75vh;
     }
 
     .home-header-span p {
@@ -42,14 +57,20 @@
     }
     
     .home-header-container {
-        height: 7.5vh;
-        padding: 1vh 0;
         flex-direction: column;
+        margin: 0;
     }
 
     .home-header-container form input[type=text] {
         width: 70vw;
-        margin-top: 2vh
+        margin-top: 1.75vh;
+        padding-left: 1vw;
+    }
+
+    .searchbar-dropdown {
+        top: 10%;
+        right: 14.25%;
+        width: 70vw;
     }
 
     .cuisine-type-carousel {

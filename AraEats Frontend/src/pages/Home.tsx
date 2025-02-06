@@ -15,10 +15,7 @@ type Props = {
 }
 
 export default function Home({ isAuthenticated }: Props) {
-    const [searchParams, setSearchParams] = useSearchParams({
-        search: '',
-        category: ''
-    });
+    const [searchParams, setSearchParams] = useSearchParams();
 
     useEffect(() => {
         console.log(searchParams)
