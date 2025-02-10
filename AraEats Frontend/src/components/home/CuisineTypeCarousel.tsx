@@ -37,7 +37,7 @@ export default function CuisineTypeCarousel({ searchParams, setSearchParams }) {
                         setSearchParams(prev=> {
                             prev.set('category', '')
                             return prev
-                        })                    }
+                        })}
                 }}
             >
                 <p className="cuisine-type-svg">picture</p>

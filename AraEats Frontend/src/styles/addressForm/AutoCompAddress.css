@@ -1,4 +1,4 @@
-.pac-target-input {
+.address-selection-container input {
     width: 90%;
     height: 2.5vh;
     margin: 5% 0 0 4.5%;
@@ -64,7 +64,7 @@
         font-size: 10px;
     }
 
-    .pac-target-input {
+    .address-selection-container input {
         margin-top: 6.5%
     }
 }

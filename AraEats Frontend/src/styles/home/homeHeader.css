@@ -7,15 +7,38 @@
 
 .searchbar-dropdown {
     background: white;
+    display: flex;
+    flex-direction: column;
     position: absolute;
-    top: 6.295%;
-    right: 29.95%;
-    border-radius: 7.5px;
-    height: 20vh;
-    width: 38.5vw;
-    padding: 0 .75vw;
+    top: 6.15%;
+    right: 30.175%;
+    width: 39.5vw;
     z-index: 10000;
     border: 1px solid grey
+}
+
+.searchbar-dropdown div {
+    width: 100%;
+    height: 5.25vh;
+    text-align: left;
+    background-color: white;
+}
+
+.searchbar-dropdown .focused {
+    background-color: rgb(225, 225, 225);
+}
+
+.searchbar-dropdown .active {
+    background: #4b4b4b;
+    color: white
+}
+
+.searchbar-dropdown .active.focused {
+    background: #757575;
+}
+
+.searchbar-dropdown div p {
+    margin: 1em 0 0 1em;
 }
 
 .home-header-span {
@@ -68,9 +91,9 @@
     }
 
     .searchbar-dropdown {
-        top: 10%;
+        top: 10.5%;
         right: 14.25%;
-        width: 70vw;
+        width: 70.5vw;
     }
 
     .cuisine-type-carousel {
