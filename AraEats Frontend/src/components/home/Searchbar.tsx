@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect, FormEvent } from "react";
+import { searchbarOptions } from "../../lib/constants";
 
 export default function Searchbar({setSearchParams}) {
     const [searchValue, setSearchValue] = useState<string>('');
@@ -7,12 +8,6 @@ export default function Searchbar({setSearchParams}) {
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
-
-    const options = [
-        { id: 'name', label: 'Name: Search by Business Name' },
-        { id: 'rating', label: 'Rating: Search by Star Rating' },
-        { id: 'category', label: 'Category: Search by Cuisine Type' }
-    ];
 
     function handleFormSubmission(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -35,7 +30,7 @@ export default function Searchbar({setSearchParams}) {
         }
     };
 
-    const toggleFilter = (filterId: string) => {
+    function toggleFilter (filterId: string) {
         setSearchFilters((prevFilters) => {
             const isRemoving = prevFilters.includes(filterId);
             const newFilters = isRemoving 
@@ -52,35 +47,44 @@ export default function Searchbar({setSearchParams}) {
         });
     };
 
-    const handleKeyDown = (e: React.KeyboardEvent) => {
+    function handleKeyDown(e: React.KeyboardEvent) {
         if (!searchDropdownVisible) return;
     
         switch (e.key) {
             case 'ArrowDown':
                 e.preventDefault();
                 setFocusedIndex(prev => {
-                    if (prev === -1 || prev >= options.length - 1) return 0;
+                    if (prev === -1 || prev >= searchbarOptions.length - 1) return 0;
                     return prev + 1;
                 });
                 break;
             case 'ArrowUp':
                 e.preventDefault();
                 setFocusedIndex(prev => {
-                    if (prev <= 0) return options.length - 1;
+                    if (prev <= 0) return searchbarOptions.length - 1;
                     return prev - 1;
                 });
                 break;
             case 'Enter':
                 // Only prevent default and handle dropdown selection if an option is focused
-                if (focusedIndex >= 0 && focusedIndex < options.length) {
+                if (focusedIndex >= 0 && focusedIndex < searchbarOptions.length) {
                     e.preventDefault();
-                    toggleFilter(options[focusedIndex].id);
+                    toggleFilter(searchbarOptions[focusedIndex].id);
                 }
                 break;
             case 'Escape':
                 setSearchDropdownVisible(false);
                 setFocusedIndex(-1);
                 break;
+        }
+    };
+
+    function scrollOptionIntoView(index: number) {
+        if (dropdownRef.current && index >= 0) {
+            const option = dropdownRef.current.children[index] as HTMLElement;
+            if (option) {
+                option.scrollIntoView({ block: 'nearest' });
+            }
         }
     };
 
@@ -97,15 +101,6 @@ export default function Searchbar({setSearchParams}) {
             document.removeEventListener("keydown", handleKeyDown as unknown as EventListener);
         };
     }, [searchDropdownVisible, focusedIndex]);
-
-    const scrollOptionIntoView = (index: number) => {
-        if (dropdownRef.current && index >= 0) {
-            const option = dropdownRef.current.children[index] as HTMLElement;
-            if (option) {
-                option.scrollIntoView({ block: 'nearest' });
-            }
-        }
-    };
 
     useEffect(() => {
         scrollOptionIntoView(focusedIndex);
@@ -128,7 +123,7 @@ export default function Searchbar({setSearchParams}) {
                         ref={dropdownRef}
                         onMouseLeave={() => setFocusedIndex(-1)}
                     >
-                        {options.map((option, index) => (
+                        {searchbarOptions.map((option, index) => (
                             <div 
                                 key={option.id}
                                 className={`
@@ -143,6 +138,15 @@ export default function Searchbar({setSearchParams}) {
                         ))}
                     </div>
                 )}
+                {
+                    searchFilters.includes('name') && <div className='searchbar-filter'>{searchbarOptions[0].id}</div>
+                }
+                {
+                    searchFilters.includes('rating') && <div className='searchbar-filter'>{searchbarOptions[1].id}</div>
+                }
+                {
+                    searchFilters.includes('category') && <div className='searchbar-filter'>{searchbarOptions[2].id}</div>
+                }
             </form>
         </div>
     );

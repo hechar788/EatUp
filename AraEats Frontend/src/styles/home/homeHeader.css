@@ -1,20 +1,10 @@
 .home-header-container form input[type=text] {
     width: 38.5vw;
-    height: 3vh;
+    height: 3.15vh;
     padding-left: .75vw;
+    border-radius: 3px;
+    border: .1px solid grey;
     font-size: .825em;
-}
-
-.searchbar-dropdown {
-    background: white;
-    display: flex;
-    flex-direction: column;
-    position: absolute;
-    top: 6.15%;
-    right: 30.175%;
-    width: 39.5vw;
-    z-index: 10000;
-    border: 1px solid grey
 }
 
 .searchbar-dropdown div {
