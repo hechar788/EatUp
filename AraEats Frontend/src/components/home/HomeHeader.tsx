@@ -15,7 +15,7 @@ export default function HomeHeader({searchParams, setSearchParams, location, set
                 <p>{`${location.vicinity}, New Zealand`}</p>
                 <a onClick={() => { setLocationPopupVisible(true) }}><strong>Change...</strong></a>
             </span>
-            <Searchbar setSearchParams={setSearchParams}/>
+            <Searchbar searchParams={searchParams} setSearchParams={setSearchParams}/>
             
         </div>
         <CuisineTypeCarousel searchParams={searchParams} setSearchParams={setSearchParams}/>

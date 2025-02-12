@@ -1,152 +1,128 @@
 import React, { useState, useRef, useEffect, FormEvent } from "react";
 import { searchbarOptions } from "../../lib/constants";
+import { SearchbarDropdown } from "./SearchbarDropdown";
 
-export default function Searchbar({setSearchParams}) {
-    const [searchValue, setSearchValue] = useState<string>('');
+export default function Searchbar({ searchParams, setSearchParams }) {
     const [searchDropdownVisible, setSearchDropdownVisible] = useState<boolean>(false);
     const [searchFilters, setSearchFilters] = useState<string[]>([]);
-    const [focusedIndex, setFocusedIndex] = useState<number>(-1);
     const inputRef = useRef<HTMLInputElement | null>(null);
     const dropdownRef = useRef<HTMLDivElement | null>(null);
+    
+    const nameSpanRef = useRef<HTMLSpanElement | null>(null);
+    const ratingSpanRef = useRef<HTMLSpanElement | null>(null);
+    const categorySpanRef = useRef<HTMLSpanElement | null>(null);
 
     function handleFormSubmission(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setSearchParams(prev => {
             const newSearchParams = new URLSearchParams(prev);
-            newSearchParams.set('search', searchValue);
             return newSearchParams;
         });
     }
 
-    function handleDropdownClosure(e: MouseEvent) {
-        if (
-            inputRef.current &&
-            dropdownRef.current &&
-            !inputRef.current.contains(e.target as Node) &&
-            !dropdownRef.current.contains(e.target as Node)
-        ) {
-            setSearchDropdownVisible(false);
-            setFocusedIndex(-1);
-        }
-    };
-
-    function toggleFilter (filterId: string) {
+    function toggleFilter(filterId: string) {
         setSearchFilters((prevFilters) => {
             const isRemoving = prevFilters.includes(filterId);
-            const newFilters = isRemoving 
+            const newFilters = isRemoving
                 ? prevFilters.filter((item) => item !== filterId)
                 : [...prevFilters, filterId];
-                
-            // Only close dropdown if we're adding a new filter
+
             if (!isRemoving) {
                 setSearchDropdownVisible(false);
-                setFocusedIndex(-1);
             }
-            
+
             return newFilters;
         });
-    };
+    }
 
-    function handleKeyDown(e: React.KeyboardEvent) {
-        if (!searchDropdownVisible) return;
-    
-        switch (e.key) {
-            case 'ArrowDown':
+    function handleSpanKeyDown(e: React.KeyboardEvent<HTMLSpanElement>) {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            e.currentTarget.blur();
+            setSearchDropdownVisible(true);
+        } else if (e.key === 'Backspace') {
+            const span = e.currentTarget;
+            if (span.textContent?.trim() === '') {
                 e.preventDefault();
-                setFocusedIndex(prev => {
-                    if (prev === -1 || prev >= searchbarOptions.length - 1) return 0;
-                    return prev + 1;
-                });
-                break;
-            case 'ArrowUp':
-                e.preventDefault();
-                setFocusedIndex(prev => {
-                    if (prev <= 0) return searchbarOptions.length - 1;
-                    return prev - 1;
-                });
-                break;
-            case 'Enter':
-                // Only prevent default and handle dropdown selection if an option is focused
-                if (focusedIndex >= 0 && focusedIndex < searchbarOptions.length) {
-                    e.preventDefault();
-                    toggleFilter(searchbarOptions[focusedIndex].id);
+                const filterDiv = span.parentElement;
+                if (filterDiv) {
+                    const filterText = filterDiv.textContent?.split(':')[0];
+                    setSearchFilters(prevFilters => 
+                        prevFilters.filter(filter => filter !== filterText)
+                    );
                 }
-                break;
-            case 'Escape':
-                setSearchDropdownVisible(false);
-                setFocusedIndex(-1);
-                break;
-        }
-    };
-
-    function scrollOptionIntoView(index: number) {
-        if (dropdownRef.current && index >= 0) {
-            const option = dropdownRef.current.children[index] as HTMLElement;
-            if (option) {
-                option.scrollIntoView({ block: 'nearest' });
+                setSearchDropdownVisible(true);
             }
         }
-    };
+    }
 
+    // Update useEffect to handle all filter types
     useEffect(() => {
-        if (searchDropdownVisible) {
-            document.addEventListener("mousedown", handleDropdownClosure);
-            document.addEventListener("keydown", handleKeyDown as unknown as EventListener);
-        } else {
-            document.removeEventListener("mousedown", handleDropdownClosure);
-            document.removeEventListener("keydown", handleKeyDown as unknown as EventListener);
-        }
-        return () => {
-            document.removeEventListener("mousedown", handleDropdownClosure);
-            document.removeEventListener("keydown", handleKeyDown as unknown as EventListener);
+        const lastAddedFilter = searchFilters[searchFilters.length - 1];
+        if (!lastAddedFilter) return;
+
+        const refs = {
+            'Name': nameSpanRef,
+            'Rating': ratingSpanRef,
+            'Category': categorySpanRef
         };
-    }, [searchDropdownVisible, focusedIndex]);
 
-    useEffect(() => {
-        scrollOptionIntoView(focusedIndex);
-    }, [focusedIndex]);
+        const refToFocus = refs[lastAddedFilter];
+        if (refToFocus?.current) {
+            refToFocus.current.focus();
+        }
+    }, [searchFilters]);
 
     return (
         <div onClick={(e) => e.stopPropagation()}>
-            <form onSubmit={(e) => handleFormSubmission(e)}>
-                <input
+            <form onSubmit={handleFormSubmission}>
+                <div
                     ref={inputRef}
-                    type="text"
-                    placeholder={'Search here...'}
-                    value={searchValue}
-                    onChange={e=>setSearchValue(e.target.value)}
-                    onClick={() => setSearchDropdownVisible(!searchDropdownVisible)}
-                />
+                    onClick={() => {
+                        setSearchDropdownVisible(!searchDropdownVisible);
+                    }}
+                    className="searchbar"
+                >
+                    {searchFilters.length === 0 && !searchDropdownVisible && <p>Start typing...</p>}
+                    {searchFilters.includes('Name') && (
+                        <div className='searchbar-filter'>{searchbarOptions[0].id}:
+                            <span
+                                ref={nameSpanRef}
+                                className='searchbar-filter-input'
+                                contentEditable={true}
+                                onKeyDown={handleSpanKeyDown}
+                            ></span>
+                        </div>
+                    )}
+                    {searchFilters.includes('Rating') && (
+                        <div className='searchbar-filter'>{searchbarOptions[1].id}:
+                            <span
+                                ref={ratingSpanRef}
+                                className='searchbar-filter-input'
+                                contentEditable={true}
+                                onKeyDown={handleSpanKeyDown}
+                            ></span>
+                        </div>
+                    )}
+                    {searchFilters.includes('Category') && (
+                        <div className='searchbar-filter'>{searchbarOptions[2].id}:
+                            <span
+                                ref={categorySpanRef}
+                                className='searchbar-filter-input'
+                                contentEditable={true}
+                                onKeyDown={handleSpanKeyDown}
+                            ></span>
+                        </div>
+                    )}
+                </div>
                 {searchDropdownVisible && (
-                    <div 
-                        className='searchbar-dropdown' 
-                        ref={dropdownRef}
-                        onMouseLeave={() => setFocusedIndex(-1)}
-                    >
-                        {searchbarOptions.map((option, index) => (
-                            <div 
-                                key={option.id}
-                                className={`
-                                    ${searchFilters.includes(option.id) ? 'active' : ''}
-                                    ${focusedIndex === index ? 'focused' : ''}
-                                `}
-                                onClick={() => toggleFilter(option.id)}
-                                onMouseEnter={() => setFocusedIndex(index)}
-                            >
-                                <p>{option.label}</p>
-                            </div>
-                        ))}
-                    </div>
+                    <SearchbarDropdown
+                        searchFilters={searchFilters}
+                        toggleFilter={toggleFilter}
+                        dropdownRef={dropdownRef}
+                        onClose={() => setSearchDropdownVisible(false)}
+                    />
                 )}
-                {
-                    searchFilters.includes('name') && <div className='searchbar-filter'>{searchbarOptions[0].id}</div>
-                }
-                {
-                    searchFilters.includes('rating') && <div className='searchbar-filter'>{searchbarOptions[1].id}</div>
-                }
-                {
-                    searchFilters.includes('category') && <div className='searchbar-filter'>{searchbarOptions[2].id}</div>
-                }
             </form>
         </div>
     );

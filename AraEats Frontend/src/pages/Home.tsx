@@ -3,12 +3,8 @@ import { useSearchParams } from 'react-router';
 import BottomNav from '../components/BottomNav'
 import HomeHeader from '../components/home/HomeHeader'
 import LocationPicker from '../components/google autocomplete/LocationPicker';
+import { Location } from '../lib/types';
 import '../styles/home/home.css'
-
-type Location = {
-    address: string | undefined,
-    vicinity: string | undefined
-}
 
 type Props = {
     isAuthenticated: boolean
@@ -16,11 +12,6 @@ type Props = {
 
 export default function Home({ isAuthenticated }: Props) {
     const [searchParams, setSearchParams] = useSearchParams();
-
-    useEffect(() => {
-        console.log(searchParams)
-    }, [searchParams])
-
     const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
     const [location, setLocation] = useState<Location | undefined>(
         {
@@ -33,7 +24,7 @@ export default function Home({ isAuthenticated }: Props) {
         if (locationPopupVisible) {
             document.body.style.overflow = 'hidden'; // Disable scrolling
         } else { document.body.style.overflow = ''; } // Re-enable scrolling 
-        return () => {document.body.style.overflow = '';} // Cleanup
+        return () => {document.body.style.overflow = '';}
     }, [locationPopupVisible]);
 
     return (

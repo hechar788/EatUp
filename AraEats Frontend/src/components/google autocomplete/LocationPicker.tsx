@@ -1,12 +1,9 @@
 import React, { Dispatch, SetStateAction } from "react"
 import AutoCompAddress from "./AutoCompAddress"
+import { Location } from "../../lib/types";
 import '../../styles/addressForm/locationPicker.css'
 import '../../styles/addressForm/autoCompAddress.css';
 
-type Location = {
-    address: string | undefined,
-    vicinity: string | undefined
-}
 
 type Props = {
     setLocationPopupVisible: Dispatch<SetStateAction<boolean>>;

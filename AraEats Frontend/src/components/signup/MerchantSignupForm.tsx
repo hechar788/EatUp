@@ -1,10 +1,6 @@
 import React, { useState } from "react"
 import LocationPicker from "../google autocomplete/LocationPicker";
-
-type Location = {
-    address: string | undefined,
-    vicinity: string | undefined
-}
+import { Location } from "../../lib/types";
 
 type MerchantSignupData = {
     businessName: string | undefined;

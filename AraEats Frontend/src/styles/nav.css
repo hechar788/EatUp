@@ -5,7 +5,7 @@ nav {
     position: fixed;
     bottom: 0;
     right: 0;
-    background-color: #4b4b4b;
+    background-color: white;
     display: flex;
     align-items: center;
 }
@@ -15,10 +15,10 @@ nav a, .nav-profile-button {
    height: 100%;
    display: flex;
    align-items: center;
-   color: white;
+   color: black;
    text-decoration: none;
    cursor: pointer;
-}
+}   
 
 nav a div, nav div {
     width: 100%;
@@ -29,14 +29,16 @@ nav a div, nav div {
     justify-content: space-evenly;
 }
 
-nav a:hover, .nav-profile-button:hover, .hover {
-    background-color: #414141;
+nav a:hover, .nav-profile-button:hover, .hover, nav a:hover svg {
+    background-color: #999999;
+    fill: white;
+    color: white;
     text-decoration: none;
+
 }
 
 nav svg {
     width: 1.8em;
-    fill: white;
 }
 
 nav p {
@@ -47,11 +49,12 @@ nav p {
 }
 
 .active {
-    background-color: #5a5a5a;
+    background-color: #999999;
+    color: white;
 }
 
-.active:hover {
-    background-color: #5a5a5a;
+.active svg {
+    fill: white;
 }
 
 .nav-profile-buttons {
@@ -92,16 +95,18 @@ nav p {
     border-bottom: 1px solid gray;
 }
 
-
 @media (max-width: 1000px) {
     nav {
-      width: 85vw;
-      padding: 0 7.5vw;
+      width: 100vw;
+      padding: 0;
+    }
+
+    .nav a {
+        width: 25%;
     }
 
     .nav-profile-buttons {
         right: 7.5%;
         width: 20.75%;
     }
-  }
-  
+}

@@ -1,17 +1,86 @@
-.home-header-container form input[type=text] {
+.searchbar {
     width: 38.5vw;
-    height: 3.15vh;
-    padding-left: .75vw;
+    height: 3.55vh;
+    padding-left: .45em;
     border-radius: 3px;
     border: .1px solid grey;
     font-size: .825em;
+    cursor: text;
+    display: flex;
+    align-items: center;
+    overflow-x: scroll;
 }
 
-.searchbar-dropdown div {
+.searchbar-filter-input {
+    margin-left: .25em;
+    min-width: 1em;
+    display: inline-block;
+}
+
+.searchbar-filter {
+    display: flex;
+    background-color: #757575;
+    padding: .35em .75em;
+    color: white;
+    flex-shrink: 0;
+}
+
+.searchbar-filter + .searchbar-filter {
+    margin-left: .75em;
+}
+
+.searchbar p {
+    margin: 0;
+    height: fit-content;
+}
+
+.searchbar-dropdown {
+    width: 38.75vw;
+    top: 5.5%;
+    right: 30.55%;
+    position: absolute;
+    z-index: 10000;
+    border: .1px solid grey;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+.searchbar-dropdown-submit {
+    width: 15%;
+    height: 65%;
+    margin-left: 83.5%;
+    background-color: rgb(116, 169, 248);
+    color: white;
+    border: 0px solid transparent;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.searchbar-dropdown-submit:hover {
+    background-color: rgb(90, 156, 255);
+}
+
+[contenteditable]:focus {
+    outline: 0px solid transparent;
+}
+
+.searchbar-dropdown-filter {
     width: 100%;
-    height: 5.25vh;
+    height: 3.85vh;
     text-align: left;
     background-color: white;
+    display: flex;
+    align-items: center;
+    border-bottom: .5px solid lightgray
+}
+
+.searchbar-dropdown-submit-container {
+    width: 100%;
+    height: 4.5vh;
+    display: flex;
+    align-items: center;
 }
 
 .searchbar-dropdown .focused {
@@ -28,7 +97,7 @@
 }
 
 .searchbar-dropdown div p {
-    margin: 1em 0 0 1em;
+    margin-left: 1em;
 }
 
 .home-header-span {
@@ -56,7 +125,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 2vh
+    margin-top: 1.5vh
 }
 
 @media screen and (max-width: 1350px) {
@@ -74,7 +143,7 @@
         margin: 0;
     }
 
-    .home-header-container form input[type=text] {
+    .searchbar {
         width: 70vw;
         margin-top: 1.75vh;
         padding-left: 1vw;
@@ -82,7 +151,7 @@
 
     .searchbar-dropdown {
         top: 10.5%;
-        right: 14.25%;
+        right: 14.75%;
         width: 70.5vw;
     }
 
