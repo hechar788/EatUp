@@ -4,6 +4,7 @@ import BottomNav from '../components/BottomNav'
 import HomeHeader from '../components/home/HomeHeader'
 import LocationPicker from '../components/google autocomplete/LocationPicker';
 import { Location } from '../lib/types';
+import fakeMerchantData from '../lib/fakeMerchantData.json';
 import '../styles/home/home.css'
 
 type Props = {
@@ -24,7 +25,7 @@ export default function Home({ isAuthenticated }: Props) {
         if (locationPopupVisible) {
             document.body.style.overflow = 'hidden'; // Disable scrolling
         } else { document.body.style.overflow = ''; } // Re-enable scrolling 
-        return () => {document.body.style.overflow = '';}
+        return () => { document.body.style.overflow = ''; }
     }, [locationPopupVisible]);
 
     return (
@@ -36,31 +37,11 @@ export default function Home({ isAuthenticated }: Props) {
             }
 
             <div className="home-list-main">
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
-                <div><p>Merchant Template</p></div>
+                {fakeMerchantData.map((merchant, index) => (
+                    <div key={index}>
+                        <p>{merchant.name} - {merchant.category} - Rating: {merchant.rating}</p>
+                    </div>
+                ))}
             </div>
             <BottomNav isAuthenticated={isAuthenticated} />
         </>

@@ -1,6 +1,6 @@
 nav {
-    width: 70vw;
-    padding: 0 15vw;
+    width: 82.5vw;
+    padding: 0 8.75vw;
     height: 6vh;
     position: fixed;
     bottom: 0;
@@ -30,11 +30,15 @@ nav a div, nav div {
 }
 
 nav a:hover, .nav-profile-button:hover, .hover, nav a:hover svg {
-    background-color: #999999;
+    background-color: #acacac;
     fill: white;
     color: white;
     text-decoration: none;
+}
 
+nav a:hover, .nav-profile-button:hover, .hover {
+    border-left: .1px solid lightgray;
+    border-right: .1px solid lightgray;
 }
 
 nav svg {
@@ -49,8 +53,12 @@ nav p {
 }
 
 .active {
-    background-color: #999999;
+    background-color: #acacac;
     color: white;
+}
+
+.active:hover {
+    border: none;
 }
 
 .active svg {

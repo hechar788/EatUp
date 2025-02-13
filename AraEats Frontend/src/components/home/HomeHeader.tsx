@@ -1,7 +1,7 @@
 import React from 'react';
 import CuisineTypeCarousel from './CuisineTypeCarousel';
 import LocationSVG from '../../assets/svg/location-pin-svg';
-import Searchbar from './Searchbar';
+import Searchbar from './searchbar/Searchbar';
 import '../../styles/home/homeHeader.css';
 
 

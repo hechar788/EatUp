@@ -1,0 +1,62 @@
+[
+    {
+        "name": "Mcdonalds",
+        "category": "Burger",
+        "rating": 1
+    },
+    {
+        "name": "Burger Fuel",
+        "category": "Burger",
+        "rating": 5
+    },
+    {
+        "name": "Dominos",
+        "category": "Pizza",
+        "rating": 1
+    },
+    {
+        "name": "Pizza Hut",
+        "category": "Pizza",
+        "rating": 3
+    },
+    {
+        "name": "Sushi Time",
+        "category": "Sushi",
+        "rating": 3
+    },
+    {
+        "name": "St Pierres",
+        "category": "Sushi",
+        "rating": 5
+    },
+    {
+        "name": "Subway",
+        "category": "Sandwich",
+        "rating": 5
+    },
+    {
+        "name": "Placeholder",
+        "category": "Chinese",
+        "rating": 1
+    },
+    {
+        "name": "Placeholder",
+        "category": "Chinese",
+        "rating": 1
+    },
+    {
+        "name": "Placeholder",
+        "category": "Chinese",
+        "rating": 1
+    },
+    {
+        "name": "Placeholder",
+        "category": "Chinese",
+        "rating": 1
+    },
+    {
+        "name": "Placeholder",
+        "category": "Chinese",
+        "rating": 1
+    }
+]

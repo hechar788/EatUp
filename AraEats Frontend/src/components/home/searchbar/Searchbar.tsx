@@ -1,12 +1,12 @@
 import React, { useState, useRef, useEffect, FormEvent } from "react";
-import { searchbarOptions } from "../../lib/constants";
+import { searchbarOptions } from "../../../lib/constants";
 import { SearchbarDropdown } from "./SearchbarDropdown";
+import SearchbarAutocomplete from "./SearchbarAutocomplete";
 
 export default function Searchbar({ searchParams, setSearchParams }) {
     const [searchDropdownVisible, setSearchDropdownVisible] = useState<boolean>(false);
     const [searchFilters, setSearchFilters] = useState<string[]>([]);
     const inputRef = useRef<HTMLInputElement | null>(null);
-    const dropdownRef = useRef<HTMLDivElement | null>(null);
     
     const nameSpanRef = useRef<HTMLSpanElement | null>(null);
     const ratingSpanRef = useRef<HTMLSpanElement | null>(null);
@@ -115,14 +115,13 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                         </div>
                     )}
                 </div>
-                {searchDropdownVisible && (
+                {searchDropdownVisible ?
                     <SearchbarDropdown
                         searchFilters={searchFilters}
                         toggleFilter={toggleFilter}
-                        dropdownRef={dropdownRef}
                         onClose={() => setSearchDropdownVisible(false)}
                     />
-                )}
+                 : searchFilters.length > 0 && <SearchbarAutocomplete />}
             </form>
         </div>
     );
