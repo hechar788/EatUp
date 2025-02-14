@@ -1,24 +1,92 @@
-import React from "react"
-export default function SearchbarFilterDropdown({ ratingFilterDropdownVisible, ratingDropdownRef, categoryDropdownRef }) {
-    return (
-        <>
-            {
-                ratingFilterDropdownVisible ?
-                    <div className="searchbar-dropdown" ref={ratingDropdownRef}>
-                        <div className="searchbar-dropdown-filter"></div>
-                        <div className="searchbar-dropdown-filter"></div>
-                        <div className="searchbar-dropdown-filter"></div>
-                        <div className="searchbar-dropdown-filter"></div>
-                        <div className="searchbar-dropdown-filter"></div>
+import React, { useState, useEffect, SetStateAction } from 'react';
 
-                    </div>
-                    :
-                    <div className="searchbar-dropdown" ref={categoryDropdownRef}>
-                        <div className="searchbar-dropdown-filter"></div>
-                        <div className="searchbar-dropdown-filter"></div>
-                        <div className="searchbar-dropdown-filter"></div>
-                    </div>
-            }
-        </>
-    )
+interface SearchbarFilterDropdownProps {
+    ratingFilterDropdownVisible: boolean;
+    ratingDropdownRef: React.RefObject<HTMLDivElement>;
+    categoryDropdownRef: React.RefObject<HTMLDivElement>;
+    onSelect?: (value: string) => void;
+    onClose?: () => void;
+    setCategoryInput: React.Dispatch<SetStateAction<string | null>>;
+    setRatingInput: React.Dispatch<SetStateAction<string | null>>;
+    setRatingFilterDropdownVisible: React.Dispatch<SetStateAction<boolean>>;
+    setCategoryFilterDropdownVisible: React.Dispatch<SetStateAction<boolean>>;
+}
+
+export default function SearchbarFilterDropdown({
+    ratingFilterDropdownVisible,
+    ratingDropdownRef,
+    categoryDropdownRef,
+    onSelect,
+    onClose,
+    setCategoryInput,
+    setRatingInput,
+    setRatingFilterDropdownVisible,
+    setCategoryFilterDropdownVisible}: SearchbarFilterDropdownProps) 
+{
+    const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+    const ratingOptions = ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'];
+    const categoryOptions = ['Category 1', 'Category 2', 'Category 3'];
+    const currentOptions = ratingFilterDropdownVisible ? ratingOptions : categoryOptions;
+    const dropdownRef = ratingFilterDropdownVisible ? ratingDropdownRef : categoryDropdownRef;
+    
+    function handleKeyDown(e: KeyboardEvent) {
+        switch (e.key) {
+            case 'ArrowDown':
+                e.preventDefault();
+                setFocusedIndex(prev => {
+                    if (prev === -1 || prev >= currentOptions.length - 1) return 0;
+                    return prev + 1;
+                });
+                break;
+            case 'ArrowUp':
+                e.preventDefault();
+                setFocusedIndex(prev => {
+                    if (prev <= 0) return currentOptions.length - 1;
+                    return prev - 1;
+                });
+                break;
+            case 'Enter':
+                if (focusedIndex >= 0 && focusedIndex < currentOptions.length) {
+                    e.preventDefault();
+                    onSelect?.(currentOptions[focusedIndex]);
+                }
+                break;
+            case 'Escape':
+                e.preventDefault();
+                onClose?.();
+                break;
+        }
+    }
+
+    useEffect(() => {
+        document.addEventListener("keydown", handleKeyDown);
+        return () => {
+            document.removeEventListener("keydown", handleKeyDown);
+        };
+    }, [focusedIndex, currentOptions]);
+
+    return (
+        <div className="searchbar-dropdown" ref={dropdownRef}>
+            {currentOptions.map((option, index) => (
+                <div
+                    key={option}
+                    className={`searchbar-dropdown-filter 
+                        ${focusedIndex === index ? 'focused' : ''}
+                    `}
+                    onClick={() => {
+                        if(ratingFilterDropdownVisible){ 
+                            setRatingInput(option);
+                             setRatingFilterDropdownVisible(false)} else {
+                                setCategoryInput(option);
+                                setCategoryFilterDropdownVisible(false);
+                             }
+                    }}
+                    onMouseEnter={() => setFocusedIndex(index)}
+                    onMouseLeave={() => setFocusedIndex(-1)}
+                >
+                    {option}
+                </div>
+            ))}
+        </div>
+    );
 }

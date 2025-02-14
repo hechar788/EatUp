@@ -12,7 +12,6 @@
 } 
 
 .searchbar-filter-input {
-    margin-left: .25em;
     min-width: 1em;
     display: inline-block;
 }
@@ -23,15 +22,30 @@
     padding: .35em .75em;
     color: white;
     flex-shrink: 0;
+    justify-content: space-between;
+    align-items: center;
+    min-width: 8.15em;
+    cursor: pointer;
+}
+
+.searchbar-filter svg {
+    height: 1vh;
+    margin-top: .025em;
+}
+
+.searchbar-filter svg:hover path {
+    fill: lightgray;
+}
+
+.searchbar-filter svg path {
+    fill: white
 }
 
 .searchbar-filter-input p:hover {
     color: lightgray;
-    cursor: pointer
 }
 
 .searchbar-filter-input p {
-    min-width: 6.5em;
     text-align: center;
 }
 
@@ -42,6 +56,10 @@
 .searchbar p {
     margin: 0;
     height: fit-content;
+}
+
+.searchbar-filter p:first-of-type{
+    margin-right: 0.55em;
 }
 
 .searchbar-dropdown {
