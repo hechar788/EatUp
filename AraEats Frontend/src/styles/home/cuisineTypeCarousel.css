@@ -46,3 +46,9 @@
 html, body {
     overscroll-behavior-x: none;
 }
+
+@media screen and (max-width: 1350px) {
+    .cuisine-type-carousel {
+        margin-top: 2vh;
+    }
+}

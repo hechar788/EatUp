@@ -1,3 +1,4 @@
+// SearchbarDropdown.tsx
 import React, { useState, useEffect, useRef } from 'react';
 import { searchbarOptions } from "../../../lib/constants";
 
@@ -5,11 +6,18 @@ interface SearchbarDropdownProps {
     searchFilters: string[];
     toggleFilter: (filterId: string) => void;
     onClose: () => void;
+    searchbarRef: React.RefObject<HTMLDivElement>;
 }
 
-export function SearchbarDropdown({ searchFilters, toggleFilter, onClose }: SearchbarDropdownProps) {
+export default function SearchbarDropdown({ searchFilters, toggleFilter, onClose, searchbarRef }: SearchbarDropdownProps) {
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
+
+    useEffect(() => {
+        if (searchFilters.length === 0) {
+            setFocusedIndex(0);
+        }
+    }, [searchFilters]);
 
     function handleKeyDown(e: KeyboardEvent) {
         switch (e.key) {
@@ -43,7 +51,8 @@ export function SearchbarDropdown({ searchFilters, toggleFilter, onClose }: Sear
     function handleDropdownClosure(e: MouseEvent) {
         if (
             dropdownRef.current &&
-            !dropdownRef.current.contains(e.target as Node)
+            !dropdownRef.current.contains(e.target as Node) &&
+            !searchbarRef.current?.contains(e.target as Node)
         ) {
             onClose();
         }

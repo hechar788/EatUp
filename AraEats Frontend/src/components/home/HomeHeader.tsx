@@ -4,7 +4,6 @@ import LocationSVG from '../../assets/svg/location-pin-svg';
 import Searchbar from './searchbar/Searchbar';
 import '../../styles/home/homeHeader.css';
 
-
 export default function HomeHeader({searchParams, setSearchParams, location, setLocationPopupVisible}) {
     return (
         <>

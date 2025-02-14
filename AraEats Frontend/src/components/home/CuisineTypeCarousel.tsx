@@ -1,23 +1,16 @@
 import React from "react"
 import '../../styles/home/CuisineTypeCarousel.css'
+import { CuisineType } from "../../lib/types"
 
 export default function CuisineTypeCarousel({ searchParams, setSearchParams }) {
-    let cuisineTypes = [
+    let cuisineTypes: CuisineType[] = [
         'Bakery',
         'Deserts',
         'Mexican',
         'Chinese',
         'Japanese',
         'Pizza',
-        'Example',
-        'Example1',
-        'Example2',
-        'Example3',
-        'Example4',
-        'Example5',
-        'Example6',
-        'Example7',
-        'Example8'
+        'Burger',
     ]
 
     return (
@@ -27,7 +20,7 @@ export default function CuisineTypeCarousel({ searchParams, setSearchParams }) {
                 <div
                 key={cuisine}
                 className={searchParams.get('category') == cuisine ? "cuisine-type active" : "cuisine-type"}
-                onClick={() => {
+                onClick={(e) => {
                     if (searchParams.get('category') != cuisine) {
                         setSearchParams(prev=> {
                             prev.set('category', cuisine)
