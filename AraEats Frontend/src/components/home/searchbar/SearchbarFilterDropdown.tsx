@@ -1,4 +1,5 @@
 import React, { useState, useEffect, SetStateAction } from 'react';
+import { cuisineTypes } from '../../../lib/constants';
 
 interface SearchbarFilterDropdownProps {
     ratingFilterDropdownVisible: boolean;
@@ -21,14 +22,13 @@ export default function SearchbarFilterDropdown({
     setCategoryInput,
     setRatingInput,
     setRatingFilterDropdownVisible,
-    setCategoryFilterDropdownVisible}: SearchbarFilterDropdownProps) 
-{
+    setCategoryFilterDropdownVisible
+}: SearchbarFilterDropdownProps) {
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
     const ratingOptions = ['1 Star', '2 Stars', '3 Stars', '4 Stars', '5 Stars'];
-    const categoryOptions = ['Category 1', 'Category 2', 'Category 3'];
-    const currentOptions = ratingFilterDropdownVisible ? ratingOptions : categoryOptions;
+    const currentOptions = ratingFilterDropdownVisible ? ratingOptions : cuisineTypes;
     const dropdownRef = ratingFilterDropdownVisible ? ratingDropdownRef : categoryDropdownRef;
-    
+
     function handleKeyDown(e: KeyboardEvent) {
         switch (e.key) {
             case 'ArrowDown':
@@ -48,7 +48,8 @@ export default function SearchbarFilterDropdown({
             case 'Enter':
                 if (focusedIndex >= 0 && focusedIndex < currentOptions.length) {
                     e.preventDefault();
-                    onSelect?.(currentOptions[focusedIndex]);
+                    const selectedOption = currentOptions[focusedIndex];
+                    handleOptionSelect(selectedOption);
                 }
                 break;
             case 'Escape':
@@ -56,6 +57,17 @@ export default function SearchbarFilterDropdown({
                 onClose?.();
                 break;
         }
+    }
+
+    function handleOptionSelect(option: string) {
+        if (ratingFilterDropdownVisible) {
+            setRatingInput(option);
+            setRatingFilterDropdownVisible(false);
+        } else {
+            setCategoryInput(option);
+            setCategoryFilterDropdownVisible(false);
+        }
+        onSelect?.(option);
     }
 
     useEffect(() => {
@@ -70,21 +82,12 @@ export default function SearchbarFilterDropdown({
             {currentOptions.map((option, index) => (
                 <div
                     key={option}
-                    className={`searchbar-dropdown-filter 
-                        ${focusedIndex === index ? 'focused' : ''}
-                    `}
-                    onClick={() => {
-                        if(ratingFilterDropdownVisible){ 
-                            setRatingInput(option);
-                             setRatingFilterDropdownVisible(false)} else {
-                                setCategoryInput(option);
-                                setCategoryFilterDropdownVisible(false);
-                             }
-                    }}
+                    className={`searchbar-dropdown-filter ${focusedIndex === index ? 'focused' : ''}`}
+                    onClick={() => handleOptionSelect(option)}
                     onMouseEnter={() => setFocusedIndex(index)}
                     onMouseLeave={() => setFocusedIndex(-1)}
                 >
-                    {option}
+                    <p className="filter-dropdown-option">{option}</p>
                 </div>
             ))}
         </div>

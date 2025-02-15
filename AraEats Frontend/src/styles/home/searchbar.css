@@ -30,7 +30,6 @@
 
 .searchbar-filter svg {
     height: 1vh;
-    margin-top: .025em;
 }
 
 .searchbar-filter svg:hover path {
@@ -46,6 +45,7 @@
 }
 
 .searchbar-filter-input p {
+    padding-right: .25em;
     text-align: center;
 }
 
@@ -56,10 +56,6 @@
 .searchbar p {
     margin: 0 0.5em 0 0;
     height: fit-content;
-}
-
-.searchbar-filter p:first-of-type{
-    margin-right: 0.55em;
 }
 
 .searchbar-dropdown {
@@ -130,6 +126,14 @@
 
 .name-filter-input {
     padding-right: .75em
+}
+
+.filter-dropdown-option {
+    margin-left: 1em;
+}
+
+.searchbar-filter span {
+    cursor: text;
 }
 
 @media screen and (max-width: 1350px) {

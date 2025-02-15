@@ -39,6 +39,7 @@ export default function Home({ isAuthenticated }: Props) {
             <div className="home-list-main">
                 {fakeMerchantData.map((merchant, index) => (
                     <div key={index}>
+                        <img src={`/src/assets/merchant-photos/${merchant.filename}`}/>
                         <p>{merchant.name} - {merchant.category} - Rating: {merchant.rating}</p>
                     </div>
                 ))}

@@ -163,6 +163,33 @@ export default function Searchbar({ searchParams, setSearchParams }) {
         }
     }
 
+    function handleFilterClick(e: React.MouseEvent, filterType: string) {
+        e.stopPropagation();
+        
+        // Don't handle if click was on the close button
+        if ((e.target as HTMLElement).closest('.close-button')) {
+            return;
+        }
+
+        switch (filterType) {
+            case 'Name':
+                if (nameSpanRef.current) {
+                    nameSpanRef.current.focus();
+                    setIsTypingInName(true);
+                }
+                break;
+            case 'Rating':
+                setRatingFilterDropdownVisible(true);
+                setCategoryFilterDropdownVisible(false);
+                break;
+            case 'Category':
+                setCategoryFilterDropdownVisible(true);
+                setRatingFilterDropdownVisible(false);
+                break;
+        }
+        setSearchDropdownVisible(false);
+    }
+
     useEffect(() => {
         // Only focus if filters array grew larger
         const wasFilterAdded = searchFilters.length > prevFiltersLength.current;
@@ -196,7 +223,11 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                     {searchFilters.length === 0 && !searchDropdownVisible && <p>Start typing...</p>}
 
                     {searchFilters.includes('Name') && (
-                        <div className='searchbar-filter'><p>{searchbarOptions[0].id}:</p>
+                        <div 
+                            className='searchbar-filter'
+                            onClick={(e) => handleFilterClick(e, 'Name')}
+                        >
+                            <p>{searchbarOptions[0].id}:</p>
                             <span
                                 ref={nameSpanRef}
                                 className='searchbar-filter-input name-filter-input'
@@ -205,39 +236,52 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                                 onFocus={() => handleSpanFocus('Name')}
                                 onBlur={handleSpanBlur}
                             ></span>
-                            <div onClick={(e) => handleCloseClick(e, 'Name')}>
+                            <div 
+                                className="close-button"
+                                onClick={(e) => handleCloseClick(e, 'Name')}
+                            >
                                 <CloseSVG />
                             </div>
                         </div>
                     )}
 
                     {searchFilters.includes('Rating') && (
-                        <div className='searchbar-filter'><p>{searchbarOptions[1].id}:</p>
+                        <div 
+                            className='searchbar-filter'
+                            onClick={(e) => handleFilterClick(e, 'Rating')}
+                        >
+                            <p>{searchbarOptions[1].id}:</p>
                             <div
                                 ref={ratingInputRef}
                                 className='searchbar-filter-input'
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setRatingFilterDropdownVisible(!ratingFilterDropdownVisible);
-                                }}> <p>{ratingInput}</p>
+                            >
+                                <p>{ratingInput}</p>
                             </div>
-                            <div onClick={(e) => handleCloseClick(e, 'Rating')}>
+                            <div 
+                                className="close-button"
+                                onClick={(e) => handleCloseClick(e, 'Rating')}
+                            >
                                 <CloseSVG />
                             </div>
                         </div>
                     )}
 
                     {searchFilters.includes('Category') && (
-                        <div className='searchbar-filter'><p>{searchbarOptions[2].id}:</p>
+                        <div 
+                            className='searchbar-filter'
+                            onClick={(e) => handleFilterClick(e, 'Category')}
+                        >
+                            <p>{searchbarOptions[2].id}:</p>
                             <div
                                 ref={categoryInputRef}
                                 className='searchbar-filter-input'
-                                onClick={(e) => {
-                                    e.stopPropagation();
-                                    setCategoryFilterDropdownVisible(!categoryFilterDropdownVisible);
-                                }}> <p>{categoryInput}</p>
+                            >
+                                <p>{categoryInput}</p>
                             </div>
-                            <div onClick={(e) => handleCloseClick(e, 'Category')}>
+                            <div 
+                                className="close-button"
+                                onClick={(e) => handleCloseClick(e, 'Category')}
+                            >
                                 <CloseSVG />
                             </div>
                         </div>
@@ -246,7 +290,7 @@ export default function Searchbar({ searchParams, setSearchParams }) {
 
                 {isTypingInName ? (
                     <SearchbarAutocomplete />
-                ) : ratingFilterDropdownVisible || categoryFilterDropdownVisible ?
+                ) : ratingFilterDropdownVisible || categoryFilterDropdownVisible ? (
                     <SearchbarFilterDropdown
                         ratingFilterDropdownVisible={ratingFilterDropdownVisible}
                         ratingDropdownRef={ratingDropdownRef}
@@ -256,15 +300,14 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                         setRatingFilterDropdownVisible={setRatingFilterDropdownVisible}
                         setCategoryFilterDropdownVisible={setCategoryFilterDropdownVisible}
                     />
-                    :
-                    searchDropdownVisible ? (
-                        <SearchbarDropdown
-                            searchFilters={searchFilters}
-                            toggleFilter={toggleFilter}
-                            onClose={() => setSearchDropdownVisible(false)}
-                            searchbarRef={searchbarRef}
-                        />
-                    ) : null}
+                ) : searchDropdownVisible ? (
+                    <SearchbarDropdown
+                        searchFilters={searchFilters}
+                        toggleFilter={toggleFilter}
+                        onClose={() => setSearchDropdownVisible(false)}
+                        searchbarRef={searchbarRef}
+                    />
+                ) : null}
             </form>
         </div>
     );

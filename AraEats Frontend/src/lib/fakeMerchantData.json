@@ -2,61 +2,73 @@
     {
         "name": "Mcdonalds",
         "category": "Burger",
-        "rating": 1
+        "rating": 1,
+        "filename": "mcdonalds.jpeg"
     },
     {
         "name": "Burger Fuel",
         "category": "Burger",
-        "rating": 5
+        "rating": 5,
+        "filename": "burgerfuel.jpg"
     },
     {
         "name": "Dominos",
         "category": "Pizza",
-        "rating": 1
+        "rating": 1,
+        "filename": "dominos.jpg"
     },
     {
         "name": "Pizza Hut",
         "category": "Pizza",
-        "rating": 3
+        "rating": 3,
+        "filename": "pizzahut.jpg"
     },
     {
         "name": "Sushi Time",
         "category": "Sushi",
-        "rating": 3
+        "rating": 3,
+        "filename": "sushitime.jpg"
     },
     {
         "name": "St Pierres",
         "category": "Sushi",
-        "rating": 5
+        "rating": 5,
+        "filename": "stpierres.jpg"
     },
     {
         "name": "Subway",
         "category": "Sandwich",
-        "rating": 5
+        "rating": 5,
+        "filename": "subway.jpeg"
     },
     {
         "name": "Placeholder",
         "category": "Chinese",
-        "rating": 1
+        "rating": 1,
+        "filename": ""
     },
     {
         "name": "Placeholder",
         "category": "Chinese",
-        "rating": 1
+        "rating": 1,
+        "filename": ""
     },
     {
         "name": "Placeholder",
         "category": "Chinese",
-        "rating": 1
+        "rating": 1,
+        "filename": ""
     },
     {
         "name": "Placeholder",
         "category": "Chinese",
-        "rating": 1
+        "rating": 1,
+        "filename": ""
     },
     {
         "name": "Placeholder",
         "category": "Chinese",
-        "rating": 1
+        "rating": 1,
+        "filename": ""
     }
 ]

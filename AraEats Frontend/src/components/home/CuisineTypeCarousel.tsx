@@ -1,18 +1,8 @@
 import React from "react"
 import '../../styles/home/CuisineTypeCarousel.css'
-import { CuisineType } from "../../lib/types"
+import { cuisineTypes } from "../../lib/constants"
 
 export default function CuisineTypeCarousel({ searchParams, setSearchParams }) {
-    let cuisineTypes: CuisineType[] = [
-        'Bakery',
-        'Deserts',
-        'Mexican',
-        'Chinese',
-        'Japanese',
-        'Pizza',
-        'Burger',
-    ]
-
     return (
         <div className="cuisine-type-carousel">
             {cuisineTypes.map((cuisine) => {
