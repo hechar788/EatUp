@@ -24,7 +24,7 @@
     flex-shrink: 0;
     justify-content: space-between;
     align-items: center;
-    min-width: 8.15em;
+    min-width: 6.5em;
     cursor: pointer;
 }
 
@@ -54,7 +54,7 @@
 }
 
 .searchbar p {
-    margin: 0;
+    margin: 0 0.5em 0 0;
     height: fit-content;
 }
 
@@ -126,6 +126,10 @@
 
 .searchbar-dropdown div p {
     margin-left: 1em;
+}
+
+.name-filter-input {
+    padding-right: .75em
 }
 
 @media screen and (max-width: 1350px) {

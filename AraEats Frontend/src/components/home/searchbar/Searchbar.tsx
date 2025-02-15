@@ -196,10 +196,10 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                     {searchFilters.length === 0 && !searchDropdownVisible && <p>Start typing...</p>}
 
                     {searchFilters.includes('Name') && (
-                        <div className='searchbar-filter'><p>{searchbarOptions[2].id}:</p>
+                        <div className='searchbar-filter'><p>{searchbarOptions[0].id}:</p>
                             <span
                                 ref={nameSpanRef}
-                                className='searchbar-filter-input'
+                                className='searchbar-filter-input name-filter-input'
                                 contentEditable={true}
                                 onKeyDown={(e) => handleSpanKeyDown(e, 'Name')}
                                 onFocus={() => handleSpanFocus('Name')}
@@ -212,7 +212,7 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                     )}
 
                     {searchFilters.includes('Rating') && (
-                        <div className='searchbar-filter'><p>{searchbarOptions[2].id}:</p>
+                        <div className='searchbar-filter'><p>{searchbarOptions[1].id}:</p>
                             <div
                                 ref={ratingInputRef}
                                 className='searchbar-filter-input'
