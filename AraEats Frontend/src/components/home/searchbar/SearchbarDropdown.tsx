@@ -7,9 +7,16 @@ interface SearchbarDropdownProps {
     toggleFilter: (filterId: string) => void;
     onClose: () => void;
     searchbarRef: React.RefObject<HTMLDivElement>;
+    onFilterRemove?: (filterId: string) => void;  // Add new prop
 }
 
-export default function SearchbarDropdown({ searchFilters, toggleFilter, onClose, searchbarRef }: SearchbarDropdownProps) {
+export default function SearchbarDropdown({ 
+    searchFilters, 
+    toggleFilter, 
+    onClose, 
+    searchbarRef,
+    onFilterRemove 
+}: SearchbarDropdownProps) {
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
@@ -18,6 +25,14 @@ export default function SearchbarDropdown({ searchFilters, toggleFilter, onClose
             setFocusedIndex(0);
         }
     }, [searchFilters]);
+
+    function handleFilterClick(filterId: string) {
+        // If filter is being removed, call onFilterRemove
+        if (searchFilters.includes(filterId) && onFilterRemove) {
+            onFilterRemove(filterId);
+        }
+        toggleFilter(filterId);
+    }
 
     function handleKeyDown(e: KeyboardEvent) {
         switch (e.key) {
@@ -38,7 +53,7 @@ export default function SearchbarDropdown({ searchFilters, toggleFilter, onClose
             case 'Enter':
                 if (focusedIndex >= 0 && focusedIndex < searchbarOptions.length) {
                     e.preventDefault();
-                    toggleFilter(searchbarOptions[focusedIndex].id);
+                    handleFilterClick(searchbarOptions[focusedIndex].id);
                 }
                 break;
             case 'Escape':
@@ -77,7 +92,7 @@ export default function SearchbarDropdown({ searchFilters, toggleFilter, onClose
                             ${searchFilters.includes(option.id) ? 'active' : ''}
                             ${focusedIndex === index ? 'focused' : ''}
                         `}
-                    onClick={() => toggleFilter(option.id)}
+                    onClick={() => handleFilterClick(option.id)}
                     onMouseEnter={() => setFocusedIndex(index)}
                     onMouseLeave={() => setFocusedIndex(-1)}
                 >
@@ -86,7 +101,7 @@ export default function SearchbarDropdown({ searchFilters, toggleFilter, onClose
             ))}
             {searchFilters.length >= 1 && (
                 <div className="searchbar-dropdown-submit-container">
-                    <button className="searchbar-dropdown-submit">Search</button>
+                    <button className="searchbar-dropdown-submit">Search All</button>
                 </div>
             )}
         </div>

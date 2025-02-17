@@ -1,3 +1,4 @@
+import React from "react"
 export default function ProfileSVG() {
 	return (
 	<svg viewBox="0 0 402.161 402.161">

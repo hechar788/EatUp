@@ -1,5 +1,59 @@
 [
     {
+        "name": "Bohemian Bakery",
+        "category": "Bakery",
+        "rating": 1,
+        "filename": "bohemianbakery.jpg"
+    },
+    {
+        "name": "Tom's Sandwich Shop",
+        "category": "Sandwich",
+        "rating": 1,
+        "filename": "tomssandwichshop.jpg"
+    },
+    {
+        "name": "Sushi Time",
+        "category": "Sushi",
+        "rating": 3,
+        "filename": "sushitime.jpg"
+    },
+    {
+        "name": "Tony's Teppanyaki",
+        "category": "Japanese",
+        "rating": 1,
+        "filename": "tonysteppanyaki.jpg"
+    },
+    {
+        "name": "Sesame Noodle & Dumplings",
+        "category": "Japanese",
+        "rating": 5,
+        "filename": "sesamenoodleanddumplings.jpg"
+    },
+    {
+        "name": "Eightgrains",
+        "category": "Chinese",
+        "rating": 5,
+        "filename": "eightgrains.jpg"
+    },
+    {
+        "name": "St Pierres",
+        "category": "Sushi",
+        "rating": 5,
+        "filename": "stpierres.jpg"
+    },
+    {
+        "name": "Pizza Hut",
+        "category": "Pizza",
+        "rating": 3,
+        "filename": "pizzahut.jpg"
+    },
+    {
+        "name": "Subway",
+        "category": "Sandwich",
+        "rating": 5,
+        "filename": "subway.jpeg"
+    },
+    {
         "name": "Mcdonalds",
         "category": "Burger",
         "rating": 1,
@@ -16,48 +70,6 @@
         "category": "Pizza",
         "rating": 1,
         "filename": "dominos.jpg"
-    },
-    {
-        "name": "Pizza Hut",
-        "category": "Pizza",
-        "rating": 3,
-        "filename": "pizzahut.jpg"
-    },
-    {
-        "name": "Sushi Time",
-        "category": "Sushi",
-        "rating": 3,
-        "filename": "sushitime.jpg"
-    },
-    {
-        "name": "St Pierres",
-        "category": "Sushi",
-        "rating": 5,
-        "filename": "stpierres.jpg"
-    },
-    {
-        "name": "Subway",
-        "category": "Sandwich",
-        "rating": 5,
-        "filename": "subway.jpeg"
-    },
-    {
-        "name": "Placeholder",
-        "category": "Chinese",
-        "rating": 1,
-        "filename": ""
-    },
-    {
-        "name": "Placeholder",
-        "category": "Chinese",
-        "rating": 1,
-        "filename": ""
-    },
-    {
-        "name": "Placeholder",
-        "category": "Chinese",
-        "rating": 1,
-        "filename": ""
     },
     {
         "name": "Placeholder",

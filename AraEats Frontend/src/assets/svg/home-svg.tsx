@@ -1,3 +1,4 @@
+import React from "react"
 export default function HomeSVG() {
 	return (
 		<svg viewBox="0 0 495.398 495.398">

@@ -1,5 +1,4 @@
 import React from "react"
-
 export default function LocationSVG() {
 	return (
 		<svg viewBox="0 0 297 297">

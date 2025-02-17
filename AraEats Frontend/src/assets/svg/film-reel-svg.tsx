@@ -1,3 +1,4 @@
+import React from "react"
 export default function ForYouSVG() {
 	return (
 		<svg viewBox="0 0 49.99 49.99">

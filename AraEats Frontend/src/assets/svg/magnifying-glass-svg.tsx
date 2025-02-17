@@ -1,3 +1,4 @@
+import React from "react"
 export default function ExploreSVG() {
     return (
         <svg viewBox="0 0 511.986 511.986">

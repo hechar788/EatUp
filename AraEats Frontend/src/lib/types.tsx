@@ -4,10 +4,21 @@ export type Location = {
 }
 
 export type CuisineType =
+    'Offers' |
     'Bakery' |
-    'Deserts' |
+    'Sandwich' |
     'Mexican' |
     'Chinese' |
     'Japanese' |
     'Pizza' |
-    'Burger'
+    'Sushi' |
+    'Korean' |
+    'Vietnamese' |
+    'Italian' |
+    'Burger' |
+    'Indian' |
+    'Thai' |
+    'Deserts' |
+    'Bubble Tea'
+
+    

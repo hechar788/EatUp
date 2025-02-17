@@ -63,8 +63,10 @@ export default function BottomNav({ isAuthenticated }: Props) {
                     className={`nav-profile-button${DisplayProfileButtons ? ' hover' : match ? ' active' : ''}`}
                     onClick={() => { setDisplayProfileButtons(!DisplayProfileButtons) }}
                 >
+                    <div>
                     <ProfileSVG />
                     <p>My Account</p>
+                    </div>
                 </div>
             </nav>
 

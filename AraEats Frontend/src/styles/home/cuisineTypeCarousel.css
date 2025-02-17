@@ -1,14 +1,14 @@
 .cuisine-type-carousel {
     position: sticky;
     top: 0;
-    height: 6.5vh;
+    height: 8.5vh;
     width: 82.5vw;
     max-width: 85vw;
     margin: 1.5vh 0 0 8.75vw;
-    padding: 1vh 0 1vh 0;
+    padding: .5 0;
     display: flex;
     align-items: center;
-    gap: 2.5vw;
+    gap: 1vw;
     overflow-x: auto;
     border-top: 1px solid rgb(187, 187, 187);
     border-bottom: 1px solid rgb(187, 187, 187);
@@ -18,9 +18,9 @@
 
 .cuisine-type {
     flex: 0 0 auto;
-    height: 92.5%;
-    width: 4.5em;
-    border: 1px green solid;
+    height: 75%;
+    padding: .25em .35em;
+    width: 5em;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
@@ -29,14 +29,17 @@
 }
 
 .cuisine-type:hover {
-    background-color: gray;
+    background-color: rgb(241, 241, 241);
 }
 
 .cuisine-type-svg {
     height: 80%;
     width: 90%;
-    border: 1px black solid;
     text-align: center;
+}
+
+.cuisine-type-svg svg {
+    height: 100%; 
 }
 
 .cuisine-type p {
