@@ -7,7 +7,7 @@ import '../../styles/addressForm/autoCompAddress.css';
 
 type Props = {
     setLocationPopupVisible: Dispatch<SetStateAction<boolean>>;
-    setLocation: Dispatch<SetStateAction<Location | undefined>>;
+    setLocation: Dispatch<SetStateAction<Location>>;
 }
 
 export default function LocationPicker(

@@ -1,10 +1,11 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useMatch } from "react-router";
 import { LoginButton, LogoutButton } from './Oauth0/LoginLogout';
-import ProfileSVG from "../assets/svg/profile-svg";
-import ExploreSVG from "../assets/svg/magnifying-glass-svg";
-import HomeSVG from "../assets/svg/home-svg";
-import ForYouSVG from "../assets/svg/film-reel-svg";
+import ProfileSVG from "../assets/svg/bottom-nav/profile-svg";
+import ExploreSVG from "../assets/svg/bottom-nav/magnifying-glass-svg";
+import HomeSVG from "../assets/svg/bottom-nav/home-svg";
+import ForYouSVG from "../assets/svg/bottom-nav/film-reel-svg";
+import SocialNetworkSVG from '../assets/svg/bottom-nav/social-network-svg';
 import "../styles/nav.css";
 
 type Props = {
@@ -44,26 +45,26 @@ export default function BottomNav({ isAuthenticated }: Props) {
                     </div>
                 </NavLink>
 
-                <NavLink to="/profile">
+                <NavLink to="/explore">
                     <div>
                         <ExploreSVG />
                         <p>Explore</p>
                     </div>
                 </NavLink>
 
-                <NavLink to="/profile">
+                <NavLink to="/friends">
                     <div>
-                        <ForYouSVG />
-                        <p>For You</p>
+                        <SocialNetworkSVG />
+                        <p>My Network</p>
                     </div>
                 </NavLink>
 
                 <div 
                     ref={profileButtonRef}
-                    className={`nav-profile-button${DisplayProfileButtons ? ' hover' : match ? ' active' : ''}`}
+                    className={'nav-profile-button'}
                     onClick={() => { setDisplayProfileButtons(!DisplayProfileButtons) }}
                 >
-                    <div>
+                    <div className={`${DisplayProfileButtons ? ' hover' : match ? ' active' : ''}`}>
                     <ProfileSVG />
                     <p>My Account</p>
                     </div>

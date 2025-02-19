@@ -1,18 +1,16 @@
 import React from "react"
 import '../../styles/home/CuisineTypeCarousel.css'
 import { cuisineTypes } from "../../lib/constants"
+import { CuisineType } from "../../lib/types";
 
-// Helper function to convert cuisine type to kebab case for file naming
 const toKebabCase = (str: string) => {
   return str.toLowerCase().replace(/\s+/g, '-');
 }
 
 export default function CuisineTypeCarousel({ 
   searchParams, 
-  setSearchParams 
-}: {
-  searchParams: URLSearchParams;
-  setSearchParams: (callback: (prev: URLSearchParams) => URLSearchParams) => void;
+  setSearchParams, 
+  setSelectedCuisineType
 }) {
   const [icons, setIcons] = React.useState<{[key: string]: React.ComponentType}>({});
 
@@ -21,7 +19,7 @@ export default function CuisineTypeCarousel({
     cuisineTypes.forEach(async (cuisine) => {
       try {
         const module = await import(
-          `../../assets/svg/cuisine-type-svg/${toKebabCase(cuisine)}-svg`
+          `../../assets/svg/cuisine-type-svg/${toKebabCase(cuisine)}-svg.tsx`
         );
         setIcons(prev => ({
           ...prev,
@@ -35,19 +33,24 @@ export default function CuisineTypeCarousel({
 
   return (
     <div className="cuisine-type-carousel">
-      {cuisineTypes.map((cuisine) => {
+      {cuisineTypes.map((cuisine: CuisineType) => {
         const IconComponent = icons[cuisine];
         const isActive = searchParams.get('category') === cuisine;
 
         return (
           <div
             key={cuisine}
-            className={isActive ? "cuisine-type active" : "cuisine-type"}
+            className={isActive ? "cuisine-type cuisine-type-active" : "cuisine-type"}
             onClick={() => {
+              setSelectedCuisineType(isActive ? null : cuisine);
               setSearchParams(prev => {
-                prev.set('category', isActive ? '' : cuisine)
-                return prev
-              })
+                if (isActive) {
+                  prev.delete('category'); // Use delete instead of set to ''
+                } else {
+                  prev.set('category', cuisine);
+                }
+                return prev;
+              });
             }}
           >
             <div className="cuisine-type-svg">

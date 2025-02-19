@@ -8,7 +8,6 @@ export const searchbarOptions = [
 
 export const cuisineTypes: CuisineType[] = [
     'Offers',
-    'Sandwich',
     'Mexican', 
     'Japanese',
     'Pizza',
@@ -18,6 +17,7 @@ export const cuisineTypes: CuisineType[] = [
     'Indian',
     'Bubble Tea',
     'Chinese',
+    'Sandwich',
     'Bakery',
     'Korean',
     'Vietnamese',

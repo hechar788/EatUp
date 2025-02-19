@@ -4,7 +4,7 @@ import LocationSVG from '../../assets/svg/location-pin-svg';
 import Searchbar from './searchbar/Searchbar';
 import '../../styles/home/homeHeader.css';
 
-export default function HomeHeader({searchParams, setSearchParams, location, setLocationPopupVisible}) {
+export default function HomeHeader({searchParams, setSearchParams, location, setLocationPopupVisible, setSelectedCuisineType}) {
     return (
         <>
        <div className="home-header-container">
@@ -17,7 +17,7 @@ export default function HomeHeader({searchParams, setSearchParams, location, set
             <Searchbar searchParams={searchParams} setSearchParams={setSearchParams}/>
             
         </div>
-        <CuisineTypeCarousel searchParams={searchParams} setSearchParams={setSearchParams}/>
+        <CuisineTypeCarousel searchParams={searchParams} setSearchParams={setSearchParams} setSelectedCuisineType={setSelectedCuisineType}/>
         </>
 
     )

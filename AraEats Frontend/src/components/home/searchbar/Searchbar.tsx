@@ -44,13 +44,18 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                 !categoryDropdownRef.current.contains(event.target as Node)) {
                 setCategoryFilterDropdownVisible(false);
             }
+
+            // Only close autocomplete if click is outside the entire searchbar
+            if (searchbarRef.current && !searchbarRef.current.contains(event.target as Node)) {
+                setIsTypingInName(false);
+            }
         }
         document.addEventListener('mousedown', handleClickOutside);
 
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [ratingFilterDropdownVisible, categoryFilterDropdownVisible]);
+    }, [ratingFilterDropdownVisible, categoryFilterDropdownVisible, isTypingInName]);
 
     function handleFormSubmission(e: FormEvent<HTMLFormElement>) {
         e.preventDefault();
@@ -63,9 +68,11 @@ export default function Searchbar({ searchParams, setSearchParams }) {
     function handleSpanKeyDown(e: React.KeyboardEvent<HTMLSpanElement>, filterType: string) {
         if (e.key === 'Enter') {
             e.preventDefault();
-            e.currentTarget.blur();
-            setSearchDropdownVisible(true);
-            setIsTypingInName(false);
+            // Only blur if not selecting from autocomplete
+            if (!isTypingInName) {
+                e.currentTarget.blur();
+                setSearchDropdownVisible(true);
+            }
         } else if (e.key === 'Backspace') {
             const span = e.currentTarget;
             if (span.textContent?.trim() === '') {
@@ -125,8 +132,11 @@ export default function Searchbar({ searchParams, setSearchParams }) {
     }
 
     function handleSpanBlur() {
+        // Delay setting isTypingInName to false to allow for Enter key selection in autocomplete
         setTimeout(() => {
-            setIsTypingInName(false);
+            if (!document.activeElement || !searchbarRef.current?.contains(document.activeElement)) {
+                setIsTypingInName(false);
+            }
         }, 200);
     }
 
@@ -210,7 +220,6 @@ export default function Searchbar({ searchParams, setSearchParams }) {
     }, [searchFilters]);
 
     useEffect(() => {
-        console.log(nameInput)
         if (nameSpanRef.current && nameInput !== nameSpanRef.current.textContent) {
             nameSpanRef.current.textContent = nameInput;
         }
@@ -224,7 +233,7 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                     onClick={handleSearchbarClick}
                     className="searchbar"
                 >
-                    {searchFilters.length === 0 && !searchDropdownVisible && <p className="typing-placeholder">Start typing...</p>}
+                    {searchFilters.length === 0 && !searchDropdownVisible && <p className="typing-placeholder">Search Merchants...</p>}
                     <div className="searchbar-filter-container">
                         {searchFilters.includes('Name') && (
                             <div
@@ -299,12 +308,14 @@ export default function Searchbar({ searchParams, setSearchParams }) {
                     ) : ratingFilterDropdownVisible || categoryFilterDropdownVisible ? (
                         <SearchbarFilterDropdown
                             ratingFilterDropdownVisible={ratingFilterDropdownVisible}
+                            categoryFilterDropdownVisible={categoryFilterDropdownVisible}
                             ratingDropdownRef={ratingDropdownRef}
                             categoryDropdownRef={categoryDropdownRef}
                             setRatingInput={setRatingInput}
                             setCategoryInput={setCategoryInput}
                             setRatingFilterDropdownVisible={setRatingFilterDropdownVisible}
                             setCategoryFilterDropdownVisible={setCategoryFilterDropdownVisible}
+                            setSearchDropdownVisible={setSearchDropdownVisible}
                         />
                     ) : searchDropdownVisible ? (
                         <SearchbarDropdown

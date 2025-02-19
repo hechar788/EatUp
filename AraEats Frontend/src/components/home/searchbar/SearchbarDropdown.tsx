@@ -1,87 +1,41 @@
-// SearchbarDropdown.tsx
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useRef } from 'react';
 import { searchbarOptions } from "../../../lib/constants";
+import { useKeyboardNavigation } from '../../../hooks/useKeyboardNavigation';
 
 interface SearchbarDropdownProps {
     searchFilters: string[];
     toggleFilter: (filterId: string) => void;
     onClose: () => void;
     searchbarRef: React.RefObject<HTMLDivElement>;
-    onFilterRemove?: (filterId: string) => void;  // Add new prop
+    onFilterRemove?: (filterId: string) => void;
 }
 
-export default function SearchbarDropdown({ 
-    searchFilters, 
-    toggleFilter, 
-    onClose, 
+export default function SearchbarDropdown({
+    searchFilters,
+    toggleFilter,
+    onClose,
     searchbarRef,
-    onFilterRemove 
+    onFilterRemove
 }: SearchbarDropdownProps) {
     const dropdownRef = useRef<HTMLDivElement | null>(null);
-    const [focusedIndex, setFocusedIndex] = useState<number>(-1);
 
-    useEffect(() => {
-        if (searchFilters.length === 0) {
-            setFocusedIndex(0);
+    function handleFilterClick(option: typeof searchbarOptions[0]) {
+        if (searchFilters.includes(option.id) && onFilterRemove) {
+            onFilterRemove(option.id);
         }
-    }, [searchFilters]);
-
-    function handleFilterClick(filterId: string) {
-        // If filter is being removed, call onFilterRemove
-        if (searchFilters.includes(filterId) && onFilterRemove) {
-            onFilterRemove(filterId);
-        }
-        toggleFilter(filterId);
+        toggleFilter(option.id);
     }
 
-    function handleKeyDown(e: KeyboardEvent) {
-        switch (e.key) {
-            case 'ArrowDown':
-                e.preventDefault();
-                setFocusedIndex(prev => {
-                    if (prev === -1 || prev >= searchbarOptions.length - 1) return 0;
-                    return prev + 1;
-                });
-                break;
-            case 'ArrowUp':
-                e.preventDefault();
-                setFocusedIndex(prev => {
-                    if (prev <= 0) return searchbarOptions.length - 1;
-                    return prev - 1;
-                });
-                break;
-            case 'Enter':
-                if (focusedIndex >= 0 && focusedIndex < searchbarOptions.length) {
-                    e.preventDefault();
-                    handleFilterClick(searchbarOptions[focusedIndex].id);
-                }
-                break;
-            case 'Escape':
-                e.preventDefault();
-                onClose();
-                break;
-        }
-    }
-
-    function handleDropdownClosure(e: MouseEvent) {
-        if (
-            dropdownRef.current &&
-            !dropdownRef.current.contains(e.target as Node) &&
-            !searchbarRef.current?.contains(e.target as Node)
-        ) {
-            onClose();
-        }
-    }
-
-    useEffect(() => {
-        document.addEventListener("mousedown", handleDropdownClosure);
-        document.addEventListener("keydown", handleKeyDown);
-
-        return () => {
-            document.removeEventListener("mousedown", handleDropdownClosure);
-            document.removeEventListener("keydown", handleKeyDown);
-        };
-    }, [focusedIndex]);
+    const { focusedIndex, setFocusedIndex, isActive } = useKeyboardNavigation({
+        items: searchbarOptions,
+        onSelect: handleFilterClick,
+        onClose,
+        dropdownRef,
+        parentRef: searchbarRef,
+        isVisible: true,
+        activeItems: searchFilters,
+        getItemId: (item) => item.id
+    });
 
     return (
         <div className='searchbar-dropdown' ref={dropdownRef}>
@@ -89,10 +43,10 @@ export default function SearchbarDropdown({
                 <div
                     key={option.id}
                     className={`searchbar-dropdown-filter 
-                            ${searchFilters.includes(option.id) ? 'active' : ''}
-                            ${focusedIndex === index ? 'focused' : ''}
-                        `}
-                    onClick={() => handleFilterClick(option.id)}
+                        ${isActive(option) ? 'active' : ''}
+                        ${focusedIndex === index ? 'focused' : ''}
+                    `}
+                    onClick={() => handleFilterClick(option)}
                     onMouseEnter={() => setFocusedIndex(index)}
                     onMouseLeave={() => setFocusedIndex(-1)}
                 >

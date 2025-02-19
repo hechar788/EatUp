@@ -1,61 +1,53 @@
-import React, { useEffect, useState, useRef } from "react"
+import React, { useEffect, useRef } from "react"
+import { useKeyboardNavigation } from '../../../hooks/useKeyboardNavigation';
 import fakeMerchantData from '../../../lib/fakeMerchantData.json';
 
-export default function SearchbarAutocomplete({ nameInput, setNameInput }) {
-    const [focusedIndex, setFocusedIndex] = useState<number>(-1);
-    const [filteredMerchants, setFilteredMerchants] = useState<typeof fakeMerchantData>([]);
+interface SearchbarAutocompleteProps {
+    nameInput: string;
+    setNameInput: (value: string) => void;
+}
+
+export default function SearchbarAutocomplete({ nameInput, setNameInput }: SearchbarAutocompleteProps) {
     const dropdownRef = useRef<HTMLDivElement | null>(null);
+    const filteredMerchants = nameInput && nameInput.length > 0
+        ? fakeMerchantData.filter(merchant =>
+            merchant.name.toLowerCase().includes(nameInput.toLowerCase())
+        )
+        : [];
 
-    useEffect(() => {
-        if (nameInput && nameInput.length > 0) {
-            // Only filter merchants if there is input
-            const filtered = fakeMerchantData.filter(merchant =>
-                merchant.name.toLowerCase().includes(nameInput.toLowerCase())
-            );
-            setFilteredMerchants(filtered);
-        } else {
-            // Clear filtered merchants if input is empty
-            setFilteredMerchants([]);
-        }
-        // Reset focused index when input changes
-        setFocusedIndex(-1);
-    }, [nameInput]);
-
-    useEffect(() => {
-        scrollOptionIntoView(focusedIndex);
-    }, [focusedIndex]);
-
-    function scrollOptionIntoView(index: number) {
-        if (dropdownRef.current && index >= 0) {
-            const option = dropdownRef.current.children[index] as HTMLElement;
-            if (option) {
-                option.scrollIntoView({ block: 'nearest' });
-            }
-        }
+    function handleMerchantSelect(merchant: typeof fakeMerchantData[0]) {
+        console.log('Updating name to:', merchant.name);
+        setNameInput(merchant.name);
     }
 
-    function handleMerchantSelect(merchantName: string) {
-        setNameInput(merchantName);
-        // Clear the filtered merchants after selection
-        setFilteredMerchants([]);
-    }
+    const { focusedIndex, setFocusedIndex } = useKeyboardNavigation({
+        items: filteredMerchants,
+        onSelect: handleMerchantSelect,
+        dropdownRef,
+        isVisible: filteredMerchants.length > 0
+    });
+
+    useEffect(()=>{
+        console.log(focusedIndex)
+    }, [focusedIndex])
 
     return (
         <div className='searchbar-dropdown' ref={dropdownRef}>
-            {filteredMerchants.length > 0 && (
+            {filteredMerchants.length > 0 ? (
                 filteredMerchants.map((merchant, index) => (
                     <div
                         key={merchant.name}
                         className={`searchbar-dropdown-filter ${index === focusedIndex ? 'focused' : ''}`}
                         onMouseEnter={() => setFocusedIndex(index)}
-                        onClick={() => handleMerchantSelect(merchant.name)}
+                        onMouseLeave={() => setFocusedIndex(-1)}
+                        onClick={() => handleMerchantSelect(merchant)}
                         role="option"
                         aria-selected={index === focusedIndex}
                     >
-                        {merchant.name}
+                        <p>{merchant.name}</p>
                     </div>
                 ))
-            )}
+            ) : <div className="searchbar-dropdown-filter"><p>Start Typing...</p></div>}
         </div>
-    )
+    );
 }

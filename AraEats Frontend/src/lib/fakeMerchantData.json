@@ -2,13 +2,13 @@
     {
         "name": "Bohemian Bakery",
         "category": "Bakery",
-        "rating": 1,
+        "rating": 5,
         "filename": "bohemianbakery.jpg"
     },
     {
         "name": "Tom's Sandwich Shop",
         "category": "Sandwich",
-        "rating": 1,
+        "rating": 1.5,
         "filename": "tomssandwichshop.jpg"
     },
     {
@@ -18,22 +18,22 @@
         "filename": "sushitime.jpg"
     },
     {
-        "name": "Tony's Teppanyaki",
-        "category": "Japanese",
-        "rating": 1,
-        "filename": "tonysteppanyaki.jpg"
-    },
-    {
-        "name": "Sesame Noodle & Dumplings",
-        "category": "Japanese",
-        "rating": 5,
-        "filename": "sesamenoodleanddumplings.jpg"
-    },
-    {
         "name": "Eightgrains",
         "category": "Chinese",
         "rating": 5,
         "filename": "eightgrains.jpg"
+    },
+    {
+        "name": "Sesame Noodle & Dumplings",
+        "category": "Japanese",
+        "rating": 4.5,
+        "filename": "sesamenoodleanddumplings.jpg"
+    },
+    {
+        "name": "Tony's Teppanyaki",
+        "category": "Japanese",
+        "rating": 1,
+        "filename": "tonysteppanyaki.jpg"
     },
     {
         "name": "St Pierres",

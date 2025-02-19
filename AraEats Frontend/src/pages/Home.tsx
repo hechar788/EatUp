@@ -3,23 +3,23 @@ import { useSearchParams } from 'react-router';
 import BottomNav from '../components/BottomNav'
 import HomeHeader from '../components/home/HomeHeader'
 import LocationPicker from '../components/google autocomplete/LocationPicker';
-import { Location } from '../lib/types';
+import StarSVG from '../assets/svg/star-svg';
 import fakeMerchantData from '../lib/fakeMerchantData.json';
+import { Location, CuisineType } from '../lib/types';
 import '../styles/home/home.css'
 
 type Props = {
     isAuthenticated: boolean
 }
 
-export default function Home({ isAuthenticated }: Props) {
+export default function HomePage({ isAuthenticated }: Props) {
     const [searchParams, setSearchParams] = useSearchParams();
+    const [selectedCuisineType, setSelectedCuisineType] = useState<CuisineType | null>(null);
     const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
-    const [location, setLocation] = useState<Location | undefined>(
-        {
-            address: 'Christchurch, New Zealand',
-            vicinity: 'Christchurch'
-        }
-    );
+    const [location, setLocation] = useState<Location>({
+        address: 'Christchurch, New Zealand',
+        vicinity: 'Christchurch'
+    });
 
     useEffect(() => {
         if (locationPopupVisible) {
@@ -28,21 +28,52 @@ export default function Home({ isAuthenticated }: Props) {
         return () => { document.body.style.overflow = ''; }
     }, [locationPopupVisible]);
 
+    // Filter merchants based on selected cuisine type
+    const filteredMerchants = React.useMemo(() => {
+        if (selectedCuisineType) {
+            return fakeMerchantData.filter(merchant => 
+                merchant.category.toLowerCase() === selectedCuisineType.toLowerCase()
+            );
+        } else {
+            return fakeMerchantData; // Show all merchants if no cuisine type selected
+        }
+    }, [selectedCuisineType]);
+
     return (
         <>
-            <HomeHeader searchParams={searchParams} setSearchParams={setSearchParams} location={location} setLocationPopupVisible={setLocationPopupVisible} />
+            <HomeHeader 
+                setSelectedCuisineType={setSelectedCuisineType} 
+                searchParams={searchParams} 
+                setSearchParams={setSearchParams} 
+                location={location} 
+                setLocationPopupVisible={setLocationPopupVisible} 
+            />
 
-            {
-                locationPopupVisible && <LocationPicker setLocationPopupVisible={setLocationPopupVisible} setLocation={setLocation} />
-            }
+            {locationPopupVisible && (
+                <LocationPicker 
+                    setLocationPopupVisible={setLocationPopupVisible} 
+                    setLocation={setLocation} 
+                />
+            )}
 
             <div className="home-list-main">
-                {fakeMerchantData.map((merchant, index) => (
-                    <div key={index}>
-                        <img src={`/src/assets/merchant-photos/${merchant.filename}`}/>
-                        <p>{merchant.name} - {merchant.category} - Rating: {merchant.rating}</p>
+                {filteredMerchants.length > 0 ? (
+                    filteredMerchants.map((merchant, index) => (
+                        <div className="merchant-container" key={index}>
+                            <img src={`/src/assets/merchant-photos/${merchant.filename}`} alt={merchant.name} />
+                            <div>
+                                <h4>{merchant.name}</h4>
+                                <div className="merchant-info">
+                                    <div>{merchant.rating} <StarSVG /> <p>(100)</p></div> - <p>{merchant.category}</p>
+                                </div>
+                            </div>
+                        </div>
+                    ))
+                ) : (
+                    <div className="no-results">
+                        <p>No merchants found for {selectedCuisineType || 'any cuisine'}</p>
                     </div>
-                ))}
+                )}
             </div>
             <BottomNav isAuthenticated={isAuthenticated} />
         </>
