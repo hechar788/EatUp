@@ -1,13 +1,22 @@
-import React, { useEffect, useRef } from "react"
-import { useKeyboardNavigation } from '../../../hooks/useKeyboardNavigation';
-import fakeMerchantData from '../../../lib/fakeMerchantData.json';
+import React, { useRef } from "react"
+import { useKeyboardNavigation } from '../../../../hooks/useKeyboardNavigation';
+import fakeMerchantData from '../../../../lib/fakeMerchantData.json';
 
 interface SearchbarAutocompleteProps {
     nameInput: string;
     setNameInput: (value: string) => void;
+    nameSpanRef: React.RefObject<HTMLSpanElement>;
+    setIsTypingInName: (value: boolean) => void;
+    setSearchDropdownVisible: (value: boolean) => void;
 }
 
-export default function SearchbarAutocomplete({ nameInput, setNameInput }: SearchbarAutocompleteProps) {
+export default function SearchbarAutocomplete({ 
+    nameInput, 
+    setNameInput, 
+    nameSpanRef,
+    setIsTypingInName,
+    setSearchDropdownVisible
+}: SearchbarAutocompleteProps) {
     const dropdownRef = useRef<HTMLDivElement | null>(null);
     const filteredMerchants = nameInput && nameInput.length > 0
         ? fakeMerchantData.filter(merchant =>
@@ -18,6 +27,14 @@ export default function SearchbarAutocomplete({ nameInput, setNameInput }: Searc
     function handleMerchantSelect(merchant: typeof fakeMerchantData[0]) {
         console.log('Updating name to:', merchant.name);
         setNameInput(merchant.name);
+        // Blur the contentEditable span
+        if (nameSpanRef.current) {
+            nameSpanRef.current.blur();
+        }
+        // Set typing state to false to close the autocomplete dropdown
+        setIsTypingInName(false);
+        // Show the main searchbar dropdown
+        setSearchDropdownVisible(true);
     }
 
     const { focusedIndex, setFocusedIndex } = useKeyboardNavigation({
@@ -26,10 +43,6 @@ export default function SearchbarAutocomplete({ nameInput, setNameInput }: Searc
         dropdownRef,
         isVisible: filteredMerchants.length > 0
     });
-
-    useEffect(()=>{
-        console.log(focusedIndex)
-    }, [focusedIndex])
 
     return (
         <div className='searchbar-dropdown' ref={dropdownRef}>

@@ -174,7 +174,7 @@
     scrollbar-width: none;
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1400px) {
     .searchbar {
         width: 83vw;
         height: 3.75vh;

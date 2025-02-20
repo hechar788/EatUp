@@ -1,6 +1,6 @@
 import React from 'react';
-import { useKeyboardNavigation } from '../../../hooks/useKeyboardNavigation';
-import { cuisineTypes } from '../../../lib/constants';
+import { useKeyboardNavigation } from '../../../../hooks/useKeyboardNavigation';
+import { cuisineTypes } from '../../../../lib/constants';
 
 interface SearchbarFilterDropdownProps {
     ratingFilterDropdownVisible: boolean;

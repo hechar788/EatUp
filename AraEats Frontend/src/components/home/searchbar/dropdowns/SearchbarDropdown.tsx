@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
-import { searchbarOptions } from "../../../lib/constants";
-import { useKeyboardNavigation } from '../../../hooks/useKeyboardNavigation';
+import { searchbarOptions } from "../../../../lib/constants";
+import { useKeyboardNavigation } from '../../../../hooks/useKeyboardNavigation';
 
 interface SearchbarDropdownProps {
     searchFilters: string[];

@@ -3,84 +3,98 @@
         "name": "Bohemian Bakery",
         "category": "Bakery",
         "rating": 5,
+        "id": "bohemianbakery",
         "filename": "bohemianbakery.jpg"
     },
     {
         "name": "Tom's Sandwich Shop",
         "category": "Sandwich",
         "rating": 1.5,
+        "id": "tomssandwichshop",
         "filename": "tomssandwichshop.jpg"
     },
     {
         "name": "Sushi Time",
         "category": "Sushi",
         "rating": 3,
+        "id": "sushitime",
         "filename": "sushitime.jpg"
     },
     {
         "name": "Eightgrains",
         "category": "Chinese",
         "rating": 5,
+        "id": "eightgrains",
         "filename": "eightgrains.jpg"
     },
     {
         "name": "Sesame Noodle & Dumplings",
         "category": "Japanese",
         "rating": 4.5,
+        "id": "sesamenoodleanddumplings",
         "filename": "sesamenoodleanddumplings.jpg"
     },
     {
         "name": "Tony's Teppanyaki",
         "category": "Japanese",
         "rating": 1,
+        "id": "tonysteppanyaki",
         "filename": "tonysteppanyaki.jpg"
     },
     {
         "name": "St Pierres",
         "category": "Sushi",
         "rating": 5,
+        "id": "stpierres",
         "filename": "stpierres.jpg"
     },
     {
         "name": "Pizza Hut",
         "category": "Pizza",
         "rating": 3,
+        "id": "pizzahut",
         "filename": "pizzahut.jpg"
     },
     {
         "name": "Subway",
         "category": "Sandwich",
         "rating": 5,
+        "id": "subway",
         "filename": "subway.jpeg"
     },
     {
         "name": "Mcdonalds",
         "category": "Burger",
         "rating": 1,
+        "id": "mcdonalds",
         "filename": "mcdonalds.jpeg"
     },
     {
         "name": "Burger Fuel",
         "category": "Burger",
         "rating": 5,
+        "id": "burgerfuel",
         "filename": "burgerfuel.jpg"
     },
     {
         "name": "Dominos",
         "category": "Pizza",
         "rating": 1,
+        "id": "dominos",
         "filename": "dominos.jpg"
     },
     {
         "name": "Placeholder",
         "category": "Chinese",
         "rating": 1,
+        "id": "",
         "filename": ""
     },
     {
-        "name": "Placeholder",
+        "name": "Placeholder2",
         "category": "Chinese",
         "rating": 1,
+        "id": "",
         "filename": ""
     }
 ]

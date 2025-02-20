@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useSearchParams } from 'react-router';
+import { useSearchParams, Link } from 'react-router';
 import BottomNav from '../components/BottomNav'
 import HomeHeader from '../components/home/HomeHeader'
 import LocationPicker from '../components/google autocomplete/LocationPicker';
@@ -12,7 +12,7 @@ type Props = {
     isAuthenticated: boolean
 }
 
-export default function HomePage({ isAuthenticated }: Props) {
+export default function Home({ isAuthenticated }: Props) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [selectedCuisineType, setSelectedCuisineType] = useState<CuisineType | null>(null);
     const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
@@ -59,6 +59,7 @@ export default function HomePage({ isAuthenticated }: Props) {
             <div className="home-list-main">
                 {filteredMerchants.length > 0 ? (
                     filteredMerchants.map((merchant, index) => (
+                        <Link to={`/merchants/${merchant.id}`}>
                         <div className="merchant-container" key={index}>
                             <img src={`/src/assets/merchant-photos/${merchant.filename}`} alt={merchant.name} />
                             <div>
@@ -68,6 +69,7 @@ export default function HomePage({ isAuthenticated }: Props) {
                                 </div>
                             </div>
                         </div>
+                        </Link>
                     ))
                 ) : (
                     <div className="no-results">

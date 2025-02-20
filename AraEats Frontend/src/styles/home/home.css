@@ -2,9 +2,15 @@
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 1.25em;
-    width: 80%;
-    padding: 0 10% 6.5vh;
+    width: 85%;
+    padding: 0 7.5% 6.5vh;
     justify-items: center;
+}
+
+.home-list-main a {
+    width: 100%;
+    text-decoration: none;
+    color: inherit;
 }
 
 .merchant-container {
@@ -66,14 +72,14 @@
     margin: 0 .25em 0 .35em;
 }
 
-@media screen and (max-width: 1350px) {
+@media screen and (max-width: 1150px) {
     .home-list-main {
         grid-template-columns: repeat(2, 1fr);
         gap: 1.5em;
     }
 }
 
-@media screen and (max-width: 905px) {
+@media screen and (max-width: 805px) {
     .home-list-main {
         display: flex;
         flex-direction: column;

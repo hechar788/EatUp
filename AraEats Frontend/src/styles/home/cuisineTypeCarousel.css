@@ -2,13 +2,12 @@
     position: sticky;
     top: 0;
     height: 8.5vh;
-    width: 82.5vw;
-    max-width: 85vw;
-    margin: 1.5vh 0 0 8.75vw;
+    width: 85vw;
+    margin: 1.5vh auto 0;
     padding: .5 0;
     display: flex;
     align-items: center;
-    gap: 1vw;
+    gap: .25em;
     overflow-x: auto;
     border-top: 1px solid rgb(187, 187, 187);
     border-bottom: 1px solid rgb(187, 187, 187);
@@ -61,5 +60,14 @@ html, body {
 @media screen and (max-width: 1350px) {
     .cuisine-type-carousel {
         margin-top: 2vh;
+        width: 85%;
     }
 }
+
+/* @media screen and (max-width: 1000px) {
+    .cuisine-type-carousel {
+        margin-top: 2vh;
+        width: 90%;
+        gap: .25vw;
+    }
+} */

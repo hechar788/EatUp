@@ -59,10 +59,8 @@ export function useKeyboardNavigation({
           });
           break;
         case 'Enter':
-          console.log('Enter key pressed, focusedIndex:', focusedIndex);
           if (focusedIndex >= 0 && focusedIndex < items.length) {
             e.preventDefault();
-            console.log('Selecting item:', items[focusedIndex]);
             onSelect(items[focusedIndex]);
             setFocusedIndex(-1);
             setIsKeyboardNav(false);
