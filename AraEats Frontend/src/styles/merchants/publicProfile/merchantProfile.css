@@ -138,6 +138,24 @@ button.active {
     background-color: #f5f5f5;
 }
 
+.merchant-profile-reels-container {
+    width: 80vw;
+    margin: 3.5% 0 0 10%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .5em;
+}
+
+.merchant-profile-reels-container video {
+    width: 100%
+}
+
+@media (max-width: 1100px){
+    .merchant-profile-reels-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: .5em;
+    }
+}
 
 
 @media (max-width: 750px){
@@ -170,5 +188,12 @@ button.active {
         position: relative;
         left: 0;
         border-top: 1px solid lightgray;
+    }
+
+    .merchant-profile-reels-container {
+        width: 92.5vw;
+        margin-left: 3.75%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .25em;
     }
 }

@@ -18,7 +18,28 @@ export default function MerchantProfile() {
     return (
         <>
         <MerchantProfileHeader merchant={merchant} merchantMenuView={merchantMenuView} setMerchantMenuView={setMerchantMenuView} />
-        <p>{merchantMenuView ? 'Menu' : 'Reels'}</p>
+        {
+            !merchantMenuView && 
+            <div className="merchant-profile-reels-container">
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+            <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
+
+            </div>
+        }
         </>
     );
 }
