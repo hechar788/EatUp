@@ -14,13 +14,18 @@ type Props = {
 export default function AppRoutes({isAuthenticated, accountType}: Props) {
     return (
       <Routes>
-        <Route path="/" element={<Home isAuthenticated={isAuthenticated} />} />
+        <Route path="/" element={<Explore isAuthenticated={isAuthenticated} />} />
+        
         <Route path="/merchants" element={<Home isAuthenticated={isAuthenticated} />}/>
-        <Route path="/merchants/:id" element={<MerchantProfile isAuthenticated={isAuthenticated}/>}/>
+        <Route path="/merchants/:id" element={<MerchantProfile />}/>
+
         <Route path="/explore" element={<Explore isAuthenticated={isAuthenticated}/>}/>
+
         <Route path="/friends" element={<Explore isAuthenticated={isAuthenticated}/>}/>
+
         <Route path="/profile" element={isAuthenticated ? <Profile isAuthenticated={isAuthenticated} accountType={accountType} /> : <Navigate to="/" />} />
         <Route path="/account-type-selection" element={accountType === 'new_user' ? <AccountTypeSelection accountType={accountType}/> : <Navigate to="/profile" />} />
+
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
   );

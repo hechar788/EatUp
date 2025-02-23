@@ -1,5 +1,5 @@
 import React from 'react';
-import Nav from '../components/BottomNav'
+import BottomNav from '../components/BottomNav'
 import ProfileContent from '../components/Oauth0/ProfileContent'
 
 type Props = {
@@ -11,7 +11,7 @@ export default function Profile({ accountType, isAuthenticated }: Props) {
     return (
     <>
         <ProfileContent accountType={accountType} />
-        <Nav isAuthenticated={isAuthenticated}/>
+        <BottomNav isAuthenticated={isAuthenticated}/>
     </>
     )
 }

@@ -15,14 +15,14 @@
     top: 10%;
     left: 30%;
     width: 40vw;
-    height: 60vh;
+    height: 55vh;
     background-color: white;
     z-index: 11;
 }
 
 .address-selection-container h1 {
     font-size: 1.5em;
-    width: 90;
+    width: fit-content;
     margin: 5% auto 1.5%;
 }
 

@@ -35,7 +35,7 @@
 }
 
 .home-list-main h4 {
-    margin: .75vh 0 0 1.25vw;
+    margin: 1vh 0 0 1.25vw;
     font-size: 1.25em;
     text-align: left;
     width: fit-content;
@@ -45,13 +45,13 @@
     height: 25%;
 }
 
-.merchant-info {
+.merchant-rating {
     display: flex;
     align-items: center;
     margin: .75vh 0 0 1.25vw;
 }
 
-.merchant-info div {
+.merchant-rating div {
     display: flex;
     margin-right: .25em;
     align-items: center;
@@ -60,15 +60,15 @@
     justify-content: flex-start;
 }
 
-.merchant-info div svg {
+.merchant-rating div svg {
     margin-left: .15em;
 }
 
-.merchant-info p {
+.merchant-rating p {
     margin: 0 0 0 .5em;
 }
 
-.merchant-info div p {
+.merchant-rating div p {
     margin: 0 .25em 0 .35em;
 }
 

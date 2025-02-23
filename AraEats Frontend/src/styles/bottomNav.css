@@ -1,9 +1,9 @@
 nav {
-    width: 100vw;
+    width: 86.5vw;
     height: 5.5vh;
     position: fixed;
     bottom: 0;
-    right: 0;
+    right: 6.75%;
     background-color: white;
     display: flex;
     justify-content: center;
@@ -11,8 +11,8 @@ nav {
 }
 
 nav a, .nav-profile-button {
-   width: 21.5%;
-   height: 100%;
+   width: 20%;
+   height: 95%;
    display: flex;
    justify-content: center;
    align-items: center;
@@ -24,6 +24,7 @@ nav a, .nav-profile-button {
 nav a div, nav div, .nav-profile-button div {
     width: 97.5%;
     height: 89.5%;
+    padding: .15em 0;
     display: flex;
     border-radius: 7.5px;
     align-items: center;
@@ -32,10 +33,14 @@ nav a div, nav div, .nav-profile-button div {
 }
 
 nav a:hover div, .nav-profile-button:hover div, .hover, nav a:hover svg {
-    background-color: #acacac;
+    background-color: #989898;
     fill: white;
     color: white;
     text-decoration: none;
+}
+
+nav a:hover svg line, nav a:hover svg polygon, nav a:hover svg path, nav a:hover circle {
+    stroke: white;
 }
 
 nav svg {
@@ -50,7 +55,7 @@ nav p {
 }
 
 .active div {
-    background-color: #acacac9f;
+    background-color: #acacac;
     color: white;
 }
 
@@ -62,23 +67,33 @@ nav p {
     fill: white;
 }
 
+.active svg line, .active svg polygon, .active svg path, .active circle {
+    stroke: white;
+}
+
 .nav-profile-buttons {
-    width: 19.75vw;
+    width: 16.75vw;
     display: flex;
     flex-direction: column;
     position: fixed;
     justify-content: center;
     align-items: center;
-    right: 9.75%;
+    right: 7%;
     bottom: 5.35%;
     background-color: white;
     border-radius: 7.5px;
-    border: 1px solid gray;
+    border: .1px solid gray;
+}
+
+.nav-profile-buttons:hover {
+    background-color: #5a5a5a;
 }
 
 .nav-profile-buttons div {
+    background-color: white;
     width: 100%;
     height: 4.5vh;
+    border-radius: 7.5px;
     display: flex;
     text-align: center;
     align-items: center;
@@ -97,20 +112,18 @@ nav p {
     color: inherit;
 }
 
-.nav-profile-buttons div:first-child {
-    border-bottom: 1px solid gray;
-}
-
 @media (max-width: 1000px) {
-    nav a {
-        width: 25%;
+    nav {
+        width: 100%;
+        right: 0;
     }
-    .nav-profile-button {
-        width: 25%;
+
+    nav a, .nav-profile-button {
+        width: 20%;
     }
 
     .nav-profile-buttons {
         right: 0%;
-        width: 24.375%;
+        width: 19.5%;
     }
 }

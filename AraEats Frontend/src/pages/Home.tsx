@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useSearchParams, Link } from 'react-router';
-import BottomNav from '../components/BottomNav'
+import BottomNav from '../components/BottomNav';
 import HomeHeader from '../components/home/HomeHeader'
 import LocationPicker from '../components/google autocomplete/LocationPicker';
 import StarSVG from '../assets/svg/star-svg';
@@ -61,10 +61,10 @@ export default function Home({ isAuthenticated }: Props) {
                     filteredMerchants.map((merchant, index) => (
                         <Link to={`/merchants/${merchant.id}`}>
                         <div className="merchant-container" key={index}>
-                            <img src={`/src/assets/merchant-photos/${merchant.filename}`} alt={merchant.name} />
+                            <img src={`/src/assets/merchantPhotos/${merchant.filename}`} alt={merchant.name} />
                             <div>
                                 <h4>{merchant.name}</h4>
-                                <div className="merchant-info">
+                                <div className="merchant-rating">
                                     <div>{merchant.rating} <StarSVG /> <p>(100)</p></div> - <p>{merchant.category}</p>
                                 </div>
                             </div>

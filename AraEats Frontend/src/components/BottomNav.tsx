@@ -4,9 +4,9 @@ import { LoginButton, LogoutButton } from './Oauth0/LoginLogout';
 import ProfileSVG from "../assets/svg/bottom-nav/profile-svg";
 import ExploreSVG from "../assets/svg/bottom-nav/magnifying-glass-svg";
 import HomeSVG from "../assets/svg/bottom-nav/home-svg";
-import ForYouSVG from "../assets/svg/bottom-nav/film-reel-svg";
+import FoodSVG from '../assets/svg/bottom-nav/food-svg';
 import SocialNetworkSVG from '../assets/svg/bottom-nav/social-network-svg';
-import "../styles/nav.css";
+import "../styles/bottomNav.css";
 
 type Props = {
     isAuthenticated: boolean;
@@ -42,6 +42,13 @@ export default function BottomNav({ isAuthenticated }: Props) {
                     <div>
                         <HomeSVG />
                         <p>Home</p>
+                    </div>
+                </NavLink>
+
+                <NavLink to="/merchants">
+                    <div>
+                        <FoodSVG />
+                        <p>Food</p>
                     </div>
                 </NavLink>
 
