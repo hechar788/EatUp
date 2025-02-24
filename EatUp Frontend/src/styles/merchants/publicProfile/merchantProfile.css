@@ -155,6 +155,10 @@ button.active {
         grid-template-columns: repeat(4, 1fr);
         gap: .5em;
     }
+
+    .merchant-profile-reels-container video {
+        height: 100%;
+    }
 }
 
 

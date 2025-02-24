@@ -1,26 +1,8 @@
-import React, { useState } from "react";
-import { useParams } from "react-router";
-import fakeMerchantData from "../lib/fakeMerchantData.json";
-import MerchantProfileHeader from "../components/merchant/MerchantProfileHeader";
-import '../styles/merchants/publicProfile/merchantProfile.css';
+import React from "react";
 
-export default function MerchantProfile() {
-    const [merchantMenuView, setMerchantMenuView] = useState<boolean>(true);
-
-    const { id } = useParams();
-    const merchant = fakeMerchantData.find(x => x.id === id);
-
-    
-    if (!merchant) {
-        return <div>Merchant not found</div>;
-    }
-
+export default function MerchantProfileReelsView({ merchant }){
     return (
-        <>
-        <MerchantProfileHeader merchant={merchant} merchantMenuView={merchantMenuView} setMerchantMenuView={setMerchantMenuView} />
-        {
-            !merchantMenuView && 
-            <div className="merchant-profile-reels-container">
+        <div className="merchant-profile-reels-container">
             <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
             <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
             <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
@@ -37,9 +19,6 @@ export default function MerchantProfile() {
             <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
             <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
             <video src={`/src/assets/merchantVideos/${merchant.reels[0]}`} controls/>
-
             </div>
-        }
-        </>
-    );
+    )
 }
