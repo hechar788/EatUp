@@ -1,4 +1,4 @@
-# React + React-Router + TypeScript + OAuth0 Frontend
+# React + React-Router + TypeScript Frontend
 
 To get started,   
 1: Open a terminal in the AraEats FrontEnd folder  
