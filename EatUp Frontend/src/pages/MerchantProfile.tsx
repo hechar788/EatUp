@@ -12,7 +12,6 @@ export default function MerchantProfile() {
     const { id } = useParams();
     const merchant = fakeMerchantData.find(x => x.id === id);
 
-    
     if (!merchant) {
         return <div>Merchant not found</div>;
     }
@@ -23,7 +22,7 @@ export default function MerchantProfile() {
         <MerchantProfileHeader merchant={merchant} merchantMenuView={merchantMenuView} setMerchantMenuView={setMerchantMenuView} />
 
         {
-            merchantMenuView && <MerchantProfileMenuView />
+            merchantMenuView && <MerchantProfileMenuView merchant={merchant}/>
         }
 
         {
