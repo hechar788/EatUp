@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { useParams } from "react-router";
 import fakeMerchantData from "../lib/fakeMerchantData.json";
-import MerchantProfileHeader from "../components/merchant/MerchantProfileHeader";
-import MerchantProfileReelsView from "../components/merchant/MerchantProfileReelsView";
-import MerchantProfileMenuView from "../components/merchant/MerchantProfileMenuView";
+
+import MerchantProfileHeader from "../components/merchant/public profile/MerchantProfileHeader";
+import MerchantProfileExplore from "../components/merchant/public profile/MerchantProfileExplore";
+import MerchantProfileMenu from "../components/merchant/public profile/MerchantProfileMenu";
+
 import '../styles/merchants/publicProfile/merchantProfile.css';
 
 export default function MerchantProfile() {
@@ -22,11 +24,11 @@ export default function MerchantProfile() {
         <MerchantProfileHeader merchant={merchant} merchantMenuView={merchantMenuView} setMerchantMenuView={setMerchantMenuView} />
 
         {
-            merchantMenuView && <MerchantProfileMenuView merchant={merchant}/>
+            merchantMenuView && <MerchantProfileMenu merchant={merchant}/>
         }
 
         {
-            !merchantMenuView && <MerchantProfileReelsView merchant={merchant}/>
+            !merchantMenuView && <MerchantProfileExplore merchant={merchant}/>
         }
 
         </>

@@ -1,6 +1,6 @@
 import React, { useState, useEffect} from "react";
-import DownArrowSVG from "../../assets/svg/down-arrow-svg";
-import StarSVG from "../../assets/svg/star-svg";
+import DownArrowSVG from "../../../assets/svg/down-arrow-svg";
+import StarSVG from "../../../assets/svg/star-svg";
 
 export default function MerchantProfileHeader({ merchant, merchantMenuView, setMerchantMenuView }){
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
