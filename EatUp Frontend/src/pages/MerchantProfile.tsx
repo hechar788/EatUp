@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router";
 import fakeMerchantData from "../lib/fakeMerchantData.json";
 
@@ -9,26 +9,29 @@ import MerchantProfileMenu from "../components/merchant/public profile/MerchantP
 import '../styles/merchants/publicProfile/merchantProfile.css';
 
 export default function MerchantProfile() {
-    const [merchantMenuView, setMerchantMenuView] = useState<boolean>(true);
 
-    const { id } = useParams();
+    const { id, page } = useParams();
     const merchant = fakeMerchantData.find(x => x.id === id);
 
     if (!merchant) {
         return <div>Merchant not found</div>;
     }
 
+    useEffect(()=>{
+        console.log(page)
+    }, [page])
+
     return (
         <>
 
-        <MerchantProfileHeader merchant={merchant} merchantMenuView={merchantMenuView} setMerchantMenuView={setMerchantMenuView} />
+        <MerchantProfileHeader merchant={merchant} page={page} />
 
         {
-            merchantMenuView && <MerchantProfileMenu merchant={merchant}/>
+            page == 'menu' && <MerchantProfileMenu merchant={merchant}/>
         }
 
         {
-            !merchantMenuView && <MerchantProfileExplore merchant={merchant}/>
+            page == 'reels' && <MerchantProfileExplore merchant={merchant}/>
         }
 
         </>

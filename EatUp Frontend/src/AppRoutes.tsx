@@ -1,7 +1,11 @@
 import React from 'react';
+
 import Home from './pages/Home';
 import MerchantProfile from './pages/MerchantProfile';
+
 import Explore from './pages/Explore';
+import Reels from './pages/Reels';
+
 import Profile from './pages/Profile';
 import AccountTypeSelection from './pages/AccountTypeSelection';
 import { Navigate, Routes, Route } from "react-router";
@@ -17,16 +21,17 @@ export default function AppRoutes({isAuthenticated, accountType}: Props) {
         <Route path="/" element={<Explore isAuthenticated={isAuthenticated} />} />
         
         <Route path="/merchants" element={<Home isAuthenticated={isAuthenticated} />}/>
-        <Route path="/merchants/:id" element={<MerchantProfile />}/>
+        <Route path="/merchants/:id/:page" element={<MerchantProfile />}/>
 
         <Route path="/explore" element={<Explore isAuthenticated={isAuthenticated}/>}/>
+        <Route path="/reels/:merchantid/:postid" element={<Reels />}/>
 
         <Route path="/friends" element={<Explore isAuthenticated={isAuthenticated}/>}/>
 
         <Route path="/profile" element={isAuthenticated ? <Profile isAuthenticated={isAuthenticated} accountType={accountType} /> : <Navigate to="/" />} />
         <Route path="/account-type-selection" element={accountType === 'new_user' ? <AccountTypeSelection accountType={accountType}/> : <Navigate to="/profile" />} />
 
-        <Route path="*" element={<Navigate to="/" />} />
+        {/* <Route path="*" element={<Navigate to="/" />} /> */}
       </Routes>
   );
 }

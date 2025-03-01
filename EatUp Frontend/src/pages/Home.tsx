@@ -16,7 +16,7 @@ export default function Home({ isAuthenticated }: Props) {
     const [searchParams, setSearchParams] = useSearchParams();
     const [selectedCuisineType, setSelectedCuisineType] = useState<CuisineType | null>(null);
     const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
-    const [location, setLocation] = useState<Location>({
+    const [location, setLocation] = useState<Location | undefined>({
         address: 'Christchurch, New Zealand',
         vicinity: 'Christchurch'
     });
@@ -59,7 +59,7 @@ export default function Home({ isAuthenticated }: Props) {
             <div className="home-list-main">
                 {filteredMerchants.length > 0 ? (
                     filteredMerchants.map((merchant, index) => (
-                        <Link to={`/merchants/${merchant.id}`}>
+                        <Link to={`/merchants/${merchant.id}/menu`}>
                         <div className="merchant-container" key={index}>
                             <img src={`/src/assets/merchantPhotos/${merchant.filename}`} alt={merchant.name} />
                             <div>

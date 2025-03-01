@@ -1,0 +1,45 @@
+html {
+    scroll-snap-type: y mandatory;
+}
+
+.reels-page-wrapper {
+    display: flex;
+    background-color: black;
+    width: 100vw;
+    height: 100vh;
+}
+
+.reels-slider {
+    height: 95%;
+    width: 40em;
+    margin: 2.5vh auto;
+    position: relative;
+    overflow: scroll;
+    scroll-snap-type: y mandatory;
+    scrollbar-width: none;
+}
+
+.reels-slider::-webkit-scrollbar {
+    display: none;
+  }
+
+.reel-card {
+    width: 100%;
+    height: 100%;
+    border: 1px solid black;
+    scroll-snap-align: start;
+}
+
+.reel-card video {
+    width: 100%;
+    height: 100%;
+    object-fit: fill;
+}
+
+@media (max-width: 750px){
+    .reels-slider {
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+}

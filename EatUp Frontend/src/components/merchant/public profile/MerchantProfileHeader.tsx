@@ -1,8 +1,9 @@
 import React, { useState, useEffect} from "react";
+import { Link } from "react-router";
 import DownArrowSVG from "../../../assets/svg/down-arrow-svg";
 import StarSVG from "../../../assets/svg/star-svg";
 
-export default function MerchantProfileHeader({ merchant, merchantMenuView, setMerchantMenuView }){
+export default function MerchantProfileHeader({ merchant, page }){
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [currentDay, setCurrentDay] = useState<string>("");
     const [currentStatus, setCurrentStatus] = useState<string>("Closed");
@@ -141,8 +142,14 @@ export default function MerchantProfileHeader({ merchant, merchantMenuView, setM
             </div>
 
             <div className="merchant-profile-view-selection-buttons">
-                <button className={`${merchantMenuView && 'active'}`} onClick={()=>setMerchantMenuView(true)}>Order Online</button>
-                <button className={`${!merchantMenuView && 'active'}`} onClick={()=>setMerchantMenuView(false)}>Reels</button>
+                <Link to={`/merchants/${merchant.id}/menu`}>
+                    <button className={`${page=='menu' && 'active'}`}>Order Online</button>
+                </Link>
+
+                <Link to={`/merchants/${merchant.id}/reels`}>
+                    <button className={`${page=='reels' && 'active'}`}>Reels</button>
+                </Link>
+
             </div>
         </div>
     )

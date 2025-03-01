@@ -215,7 +215,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}, {"fileName": "fakeReel1.mp4", "id": 1}, {"fileName": "fakeReel2.mp4", "id": 2}, {"fileName": "fakeReel3.mp4", "id": 3}, {"fileName": "fakeReel.mp4", "id": 4}, {"fileName": "fakeReel1.mp4", "id": 5}, {"fileName": "fakeReel2.mp4", "id": 6}, {"fileName": "fakeReel3.mp4", "id": 7}, {"fileName": "fakeReel.mp4", "id": 8}, {"fileName": "fakeReel1.mp4", "id": 9}, {"fileName": "fakeReel2.mp4", "id": 10}, {"fileName": "fakeReel3.mp4", "id": 11}]
     },
     {
         "name": "Tom's Sandwich Shop",
@@ -433,7 +433,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Sushi Time",
@@ -651,7 +651,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Eightgrains Dumplings & Bao",
@@ -869,7 +869,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Sesame Noodle & Dumplings",
@@ -1087,7 +1087,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Tony's Teppanyaki",
@@ -1305,7 +1305,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "St Pierres",
@@ -1523,7 +1523,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Pizza Hut",
@@ -1741,7 +1741,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Subway",
@@ -1959,7 +1959,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Mcdonalds",
@@ -2177,7 +2177,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Burger Fuel",
@@ -2395,7 +2395,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Dominos",
@@ -2613,7 +2613,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Placeholder",
@@ -2831,7 +2831,7 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     },
     {
         "name": "Placeholder2",
@@ -3049,6 +3049,6 @@
             
             ]
         },
-        "reels": ["fakeReel.mp4"]
+        "reels": [{"fileName": "fakeReel.mp4", "id": 0}]
     }
 ]
