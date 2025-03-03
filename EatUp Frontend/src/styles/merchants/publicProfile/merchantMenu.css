@@ -46,7 +46,7 @@
 
 .category-container {
     width: 90%;
-    height: 3.25em;
+    height: 5.5vh;
     padding: 0 2.5% 0 7.5%;
     background-color: white;
     display: flex;
@@ -98,7 +98,6 @@
         margin-top: 1.5em;
         width: 100%;
     }
-
 
     .category-container {
         flex-shrink: 0;

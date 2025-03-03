@@ -76,7 +76,7 @@
 @media screen and (max-width: 1150px) {
     .home-list-main {
         grid-template-columns: repeat(2, 1fr);
-        gap: 1.5em;
+        gap: .5em;
     }
 }
 
