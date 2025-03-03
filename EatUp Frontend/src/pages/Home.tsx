@@ -8,11 +8,7 @@ import fakeMerchantData from '../lib/fakeMerchantData.json';
 import { Location, CuisineType } from '../lib/types';
 import '../styles/home/home.css'
 
-type Props = {
-    isAuthenticated: boolean
-}
-
-export default function Home({ isAuthenticated }: Props) {
+export default function Home() {
     const [searchParams, setSearchParams] = useSearchParams();
     const [selectedCuisineType, setSelectedCuisineType] = useState<CuisineType | null>(null);
     const [locationPopupVisible, setLocationPopupVisible] = useState<boolean>(false);
@@ -77,7 +73,7 @@ export default function Home({ isAuthenticated }: Props) {
                     </div>
                 )}
             </div>
-            <BottomNav isAuthenticated={isAuthenticated} />
+            <BottomNav />
         </>
     )
 }

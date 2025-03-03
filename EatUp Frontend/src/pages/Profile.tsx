@@ -4,14 +4,13 @@ import ProfileContent from '../components/Oauth0/ProfileContent'
 
 type Props = {
     accountType: 'new_user' | 'merchant' | 'customer',
-    isAuthenticated: boolean
 }
 
-export default function Profile({ accountType, isAuthenticated }: Props) {
+export default function Profile({ accountType }: Props) {
     return (
     <>
         <ProfileContent accountType={accountType} />
-        <BottomNav isAuthenticated={isAuthenticated}/>
+        <BottomNav />
     </>
     )
 }

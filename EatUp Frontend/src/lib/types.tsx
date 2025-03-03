@@ -20,5 +20,3 @@ export type CuisineType =
     'Thai' |
     'Deserts' |
     'Bubble Tea'
-
-    

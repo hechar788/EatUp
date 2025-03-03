@@ -1,4 +1,4 @@
-nav {
+.main--nav {
     width: 86.5vw;
     height: 5.5vh;
     position: fixed;
@@ -10,18 +10,7 @@ nav {
     align-items: center;
 }
 
-nav a, .nav-profile-button {
-   width: 20%;
-   height: 95%;
-   display: flex;
-   justify-content: center;
-   align-items: center;
-   color: black;
-   text-decoration: none;
-   cursor: pointer;
-}   
-
-nav a div, nav div, .nav-profile-button div {
+.main--nav a div, .nav-profile-button div {
     width: 97.5%;
     height: 89.5%;
     padding: .15em 0;
@@ -32,22 +21,33 @@ nav a div, nav div, .nav-profile-button div {
     justify-content: space-evenly;
 }
 
-nav a:hover div, .nav-profile-button:hover div, .hover, nav a:hover svg {
+.main--nav a, .nav-profile-button {
+    width: 20%;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+ }   
+
+.main--nav a:hover div, .nav-profile-button:hover div, .hover, .main--nav a:hover svg {
     background-color: #989898;
     fill: white;
     color: white;
     text-decoration: none;
 }
 
-nav a:hover svg line, nav a:hover svg polygon, nav a:hover svg path, nav a:hover circle {
+.main--nav a:hover svg line, .main--nav a:hover svg polygon, .main--nav a:hover svg path, .main--nav a:hover circle {
     stroke: white;
 }
 
-nav svg {
+.main--nav svg {
     width: 1.8em;
 }
 
-nav p {
+.main--nav p {
     margin: 0;
     padding: 0;
     font-family: "Roboto Flex";
@@ -113,12 +113,12 @@ nav p {
 }
 
 @media (max-width: 1000px) {
-    nav {
+    .main--nav {
         width: 100%;
         right: 0;
     }
 
-    nav a, .nav-profile-button {
+    .main--nav a, .nav-profile-button {
         width: 20%;
     }
 

@@ -1,0 +1,44 @@
+.merchant-profile-reels-container {
+    width: 85vw;
+    margin: 3.5% 0 0 0;
+    padding-bottom: 5vh;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: .75em;
+}
+
+.merchant-profile-reels-container a {
+    aspect-ratio: 9/14;
+    width: 100%;
+}
+
+.merchant-profile-reels-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .25em;
+}
+
+.merchant-profile-reels-container video:hover {
+    filter: brightness(60%);
+    cursor: pointer;
+}
+
+@media (max-width: 1150px){
+    .merchant-profile-reels-container {
+        grid-template-columns: repeat(4, 1fr);
+        gap: .5em;
+    }
+
+    .merchant-profile-reels-container video {
+        height: 100%;
+    }
+}
+@media (max-width: 750px) {
+    .merchant-profile-reels-container {
+        width: 95vw;
+        margin: 1em auto 0;
+        grid-template-columns: repeat(3, 1fr);
+        gap: .25em;
+    }
+}

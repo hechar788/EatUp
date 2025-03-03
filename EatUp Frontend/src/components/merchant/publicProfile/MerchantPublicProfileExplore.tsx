@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router";
+import '../../../styles/merchants/publicProfile/merchantReels.css'
 
-export default function MerchantProfileExplore({ merchant }){
+export default function MerchantPublicProfileExplore({ merchant }){
     return (
         <div className="merchant-profile-reels-container">
             {

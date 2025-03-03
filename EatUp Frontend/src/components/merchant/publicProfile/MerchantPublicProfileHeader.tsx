@@ -3,7 +3,7 @@ import { Link } from "react-router";
 import DownArrowSVG from "../../../assets/svg/down-arrow-svg";
 import StarSVG from "../../../assets/svg/star-svg";
 
-export default function MerchantProfileHeader({ merchant, page }){
+export default function MerchantPublicProfileHeader({ merchant, page }){
     const [isDropdownOpen, setIsDropdownOpen] = useState(false);
     const [currentDay, setCurrentDay] = useState<string>("");
     const [currentStatus, setCurrentStatus] = useState<string>("Closed");

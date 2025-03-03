@@ -1,18 +1,20 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { NavLink, Link, useMatch } from "react-router";
+import { useAuth0 } from '@auth0/auth0-react';
+
 import { LoginButton, LogoutButton } from './Oauth0/LoginLogout';
+
 import ProfileSVG from "../assets/svg/bottom-nav/profile-svg";
 import ExploreSVG from "../assets/svg/bottom-nav/magnifying-glass-svg";
 import HomeSVG from "../assets/svg/bottom-nav/home-svg";
 import FoodSVG from '../assets/svg/bottom-nav/food-svg';
 import SocialNetworkSVG from '../assets/svg/bottom-nav/social-network-svg';
+
 import "../styles/bottomNav.css";
 
-type Props = {
-    isAuthenticated: boolean;
-}
 
-export default function BottomNav({ isAuthenticated }: Props) {
+export default function BottomNav() {
+    const { isAuthenticated } = useAuth0();
     const match = useMatch('/profile');
     const [DisplayProfileButtons, setDisplayProfileButtons] = useState<boolean>(false);
     const profileButtonsRef = useRef<HTMLDivElement>(null);
@@ -37,7 +39,7 @@ export default function BottomNav({ isAuthenticated }: Props) {
 
     return (
         <>
-            <nav>
+            <nav className='main--nav'>
                 <NavLink to="/">
                     <div>
                         <HomeSVG />
